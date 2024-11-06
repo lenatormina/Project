@@ -6,7 +6,7 @@ const LargeText = styled.div`
 	font-size: 48px;
 	font-weight: 600;
 	line-height: 48px;
-	margin-top: 17px;
+	margin-top: 13px;
 `;
 
 const SmallText = styled.div`
@@ -26,5 +26,5 @@ const LogoContainer = ({ className }) => (
 
 export const Logo = styled(LogoContainer)`
 	display: flex;
-	margin-top: -18px;
+	margin-top: -25px;
 `;

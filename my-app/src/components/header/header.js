@@ -25,7 +25,7 @@ export const Header = styled(HeaderConteiner)`
 	position: fixed;
 	top: 0;
 	width: 1000px;
-	height: 120px;
+	height: 90px;
 	padding: 20px 40px;
 	background-color: #fff;
 	box-shadow: 0px -2px 17px #000;
