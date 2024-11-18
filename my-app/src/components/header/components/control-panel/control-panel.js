@@ -11,14 +11,21 @@ import {
 import { logout } from '../../../../action';
 
 const RigthAlign = styled.div`
+	margin-top: -5px;
 	display: flex;
-	margin: 1px;
+	justify-content: flex-end;
+	align-items: center;
 `;
 
 const StyledIcon = styled.div`
 	&:hover {
 		cursor: pointer;
 	}
+`;
+
+const UserName = styled.div`
+	font-size: 22px;
+	font-weight: bold;
 `;
 
 const ControlPanelContainer = ({ className }) => {
@@ -31,28 +38,32 @@ const ControlPanelContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<RigthAlign>
-				<Button>
-					{roleId === ROLE.GUEST ? (
+				{roleId === ROLE.GUEST ? (
+					<Button>
 						<Link to="/login">Войти</Link>
-					) : (
-						<>
-							<div>{login}</div>
-							<StyledIcon onClick={() => dispatch(logout(session))}>
-								<Icon id="fa-sign-out" margin="3px 0 0 0" />
-							</StyledIcon>
-						</>
-					)}
-				</Button>
+					</Button>
+				) : (
+					<>
+						<UserName>{login}</UserName>
+						<StyledIcon>
+							<Icon
+								id="fa-sign-out"
+								margin="0 0 0 15px"
+								onClick={() => dispatch(logout(session))}
+							/>
+						</StyledIcon>
+					</>
+				)}
 			</RigthAlign>
 			<RigthAlign>
 				<StyledIcon onClick={() => navigate(-1)}>
-					<Icon id="fa-backward" margin="3px 0 0 0" />
+					<Icon id="fa-backward" margin="5px 0 0 0" />
 				</StyledIcon>
 				<Link to="/material">
-					<Icon id="fa-file-text-o" margin="3px 0 0 15px" />
+					<Icon id="fa-file-text-o" margin="5px 0 0 15px" />
 				</Link>
 				<Link to="/users">
-					<Icon id="fa-users" margin="3px 0 0 15px" />
+					<Icon id="fa-users" margin="5px 0 0 15px" />
 				</Link>
 			</RigthAlign>
 		</div>
