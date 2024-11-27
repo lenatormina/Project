@@ -1,6 +1,6 @@
 import { getRoles } from '../api';
 import { sessions } from '../sessions';
-import { ROLE } from '../constans';
+import { ROLE } from '../constants';
 
 export const fetchRoles = async (userSession) => {
 	const accessRoles = [ROLE.ADMIN];

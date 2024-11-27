@@ -2,13 +2,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Icon } from '../../../../components';
-import { ROLE } from '../../../../constans';
+import { ROLE } from '../../../../constants';
 import {
 	selectUserRole,
 	selectUserLogin,
 	selectUserSession,
 } from '../../../../selectors';
-import { logout } from '../../../../action';
+import { logout } from '../../../../actions';
 
 const RigthAlign = styled.div`
 	margin-top: -5px;

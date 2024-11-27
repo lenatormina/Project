@@ -4,6 +4,7 @@ import { UserRow, TableRow } from './components';
 import { useServerRequest } from '../../hooks';
 import { useState, useEffect } from 'react';
 import { Content } from '../../components';
+import { ROLE } from '../../constants';
 
 const UsersContainer = ({ className }) => {
 	const [users, setUsers] = useState([]);
@@ -40,10 +41,11 @@ const UsersContainer = ({ className }) => {
 					{users.map(({ id, login, registeredAt, roleId }) => (
 						<UserRow
 							key={id}
+							id={id}
 							login={login}
 							registeredAt={registeredAt}
 							roleId={roleId}
-							roles={roles.filter(({roleId}) => roleId !== ROLE.GUEST)}
+							roles={roles.filter(({id: roleId}) => roleId !== ROLE.GUEST)}
 						/>
 					))}
 				</div>
