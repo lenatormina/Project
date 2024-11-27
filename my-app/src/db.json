@@ -1,0 +1,60 @@
+{
+	"users": [
+		{
+			"id": "001",
+			"login": "elena",
+			"password": "qwerty123",
+			"registed_at": "2024-10-30",
+			"role_id": 0
+		},
+		{
+			"id": "002",
+			"login": "lena",
+			"password": "qwerty",
+			"registed_at": "2024-10-31",
+			"role_id": 3
+		}
+	],
+	"roles": [
+		{
+			"id": "0",
+			"name": "Администратор"
+		},
+		{
+			"id": "1",
+			"name": "Модератор"
+		},
+		{
+			"id": "2",
+			"name": "Читатель"
+		},
+		{
+			"id": "3",
+			"name": "Гость"
+		}
+	],
+	"posts": [
+		{
+			"id": "001",
+			"title": "Материал1",
+			"image_url": "/my-app/src/images.png",
+			"content": "Текст для статьи",
+			"published_at": "2024-10-30"
+		},
+		{
+			"id": "002",
+			"title": "Материал2",
+			"image_url": "/my-app/src/images.png",
+			"content": "Текст для статьи",
+			"published_at": "2024-10-20"
+		},
+		{
+			"id": "003",
+			"title": "Материал3",
+			"image_url": "/my-app/src/images.png",
+			"content": "Текст для статьи",
+			"published_at": "2024-10-10"
+		}
+	],
+	"comments": []
+}
