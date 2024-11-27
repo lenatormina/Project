@@ -6,6 +6,13 @@
 			"password": "qwerty123",
 			"registed_at": "2024-10-30",
 			"role_id": 0
+		},
+		{
+			"id": "002",
+			"login": "lena",
+			"password": "qwerty",
+			"registed_at": "2024-10-31",
+			"role_id": 3
 		}
 	],
 	"roles": [
