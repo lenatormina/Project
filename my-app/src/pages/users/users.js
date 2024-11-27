@@ -43,7 +43,7 @@ const UsersContainer = ({ className }) => {
 							login={login}
 							registeredAt={registeredAt}
 							roleId={roleId}
-							roles={roles}
+							roles={roles.filter(({roleId}) => roleId !== ROLE.GUEST)}
 						/>
 					))}
 				</div>
