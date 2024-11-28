@@ -10,6 +10,7 @@ const UsersContainer = ({ className }) => {
 	const [users, setUsers] = useState([]);
 	const [roles, setRoles] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
+	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
 
 	const requestServer = useServerRequest();
 
@@ -26,7 +27,13 @@ const UsersContainer = ({ className }) => {
 				setRoles(rolesRes.res);
 			},
 		);
-	}, [requestServer]);
+	}, [requestServer, shouldUpdateUserList]);
+
+	const onUserRemove = (userId) => {
+		requestServer('removeUser',userId).then(()=>{
+			setShouldUpdateUserList(!shouldUpdateUserList);
+		});
+	}
 
 	return (
 		<div className={className}>
@@ -46,6 +53,7 @@ const UsersContainer = ({ className }) => {
 							registeredAt={registeredAt}
 							roleId={roleId}
 							roles={roles.filter(({id: roleId}) => roleId !== ROLE.GUEST)}
+							onUserRemove={() => onUserRemove(id)}
 						/>
 					))}
 				</div>
