@@ -6,11 +6,11 @@ import { Input, Button, H2, AuthFormError } from '../../components';
 import { Link, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { setUser } from '../../action';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserRole } from '../../selectors';
-import { ROLE } from '../../constans';
+import { ROLE } from '../../constants';
 import { useResetForm } from '../../hooks';
+import { setUser } from '../../actions';
 
 const authFormSchema = yup.object().shape({
 	login: yup
