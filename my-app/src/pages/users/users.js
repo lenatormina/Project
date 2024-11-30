@@ -19,10 +19,8 @@ const UsersContainer = ({ className }) => {
 			([usersRes, rolesRes]) => {
 				if (usersRes.error || rolesRes.error) {
 					setErrorMessage(usersRes.error || rolesRes.error);
-					console.log(usersRes.error);
 					return;
 				}
-				console.log(usersRes);
 				setUsers(usersRes.res);
 				setRoles(rolesRes.res);
 			},
@@ -30,10 +28,10 @@ const UsersContainer = ({ className }) => {
 	}, [requestServer, shouldUpdateUserList]);
 
 	const onUserRemove = (userId) => {
-		requestServer('removeUser',userId).then(()=>{
+		requestServer('removeUser', userId).then(() => {
 			setShouldUpdateUserList(!shouldUpdateUserList);
 		});
-	}
+	};
 
 	return (
 		<div className={className}>
@@ -52,7 +50,9 @@ const UsersContainer = ({ className }) => {
 							login={login}
 							registeredAt={registeredAt}
 							roleId={roleId}
-							roles={roles.filter(({id: roleId}) => roleId !== ROLE.GUEST)}
+							roles={roles.filter(
+								({ id: roleId }) => roleId !== ROLE.GUEST,
+							)}
 							onUserRemove={() => onUserRemove(id)}
 						/>
 					))}

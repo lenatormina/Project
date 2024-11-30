@@ -14,7 +14,7 @@ export const materialReducer = (state = initialMaterialState, action) => {
 			return {
 				...state,
 				...action.payload,
-		}
+			};
 		default:
 			return state;
 	}
