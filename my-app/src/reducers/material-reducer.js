@@ -6,6 +6,7 @@ const initialMaterialState = {
 	content: '',
 	publishedAt: '',
 	commentsCount: [],
+	comments: [],
 };
 
 export const materialReducer = (state = initialMaterialState, action) => {

@@ -19,7 +19,7 @@ const MaterialContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<MaterialContent material={material} />
-			<Comments comments={material.comments} />
+			<Comments comments={material.comments} materialId={material.id} />
 		</div>
 	);
 };

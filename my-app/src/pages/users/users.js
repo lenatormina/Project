@@ -22,7 +22,7 @@ const UsersContainer = ({ className }) => {
 					return;
 				}
 				setUsers(usersRes.res);
-				setRoles(rolesRes.res);
+				setRoles(rolesRes.res.roles);
 			},
 		);
 	}, [requestServer, shouldUpdateUserList]);
@@ -50,7 +50,7 @@ const UsersContainer = ({ className }) => {
 							login={login}
 							registeredAt={registeredAt}
 							roleId={roleId}
-							roles={roles.filter(
+							roles={Object.values(roles).filter(
 								({ id: roleId }) => roleId !== ROLE.GUEST,
 							)}
 							onUserRemove={() => onUserRemove(id)}

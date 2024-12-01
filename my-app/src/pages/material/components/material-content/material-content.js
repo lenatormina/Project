@@ -38,6 +38,7 @@ export const MaterialContent = styled(MaterialContentContainer)`
 	& img {
 		float: left;
 		margin: 0 20px 10px 0;
+		width: 300px;
 	}
 
 	& .special-panel {

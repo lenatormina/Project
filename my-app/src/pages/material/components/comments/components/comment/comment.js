@@ -33,7 +33,8 @@ export const Comment = styled(CommentContainer)`
 & .information-panel {
 	display: flex;
 	justify-content: space-between;
-}
+	}
+
 	& .author {
 		display: flex;
 	}
