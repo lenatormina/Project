@@ -2,6 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { Header, Footer } from './components';
 import { Authorization, Registration, Users, Material } from './pages';
 import styled from 'styled-components';
+import { useLayoutEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from './actions';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -18,6 +21,24 @@ const Page = styled.div`
 `;
 
 export const App = () => {
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		const currentUserDataJson = sessionStorage.getItem('userData');
+
+		if (!currentUserDataJson) {
+			return;
+		}
+
+		const currentUserData = JSON.parse(currentUserDataJson);
+
+		dispatch(
+			setUser({
+				...currentUserData,
+				roleId: Number(currentUserData.roleId),
+			}),
+		);
+	}, [dispatch]);
 	return (
 		<AppColumn>
 			<Header />

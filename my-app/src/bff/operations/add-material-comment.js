@@ -12,8 +12,6 @@ export const addMaterialComment = async (userSession, userId, materialId, conten
 		};
 	}
 
-	console.log(userId, materialId, content);
-
 	await addComment(userId, materialId, content);
 
 	const material = await getMaterial(materialId);
