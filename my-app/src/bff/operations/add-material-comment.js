@@ -2,16 +2,16 @@ import { addComment, getComments, getMaterial } from '../api';
 import { sessions } from '../sessions';
 import { ROLE } from '../constants';
 
-export const addMaterialComment = async (userSession, userId, materialId, content) => {
+export const addMaterialComment = async (hash, userId, materialId, content) => {
 	const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR, ROLE.READER];
+	const access = await sessions.access(hash, accessRoles);
 
-	if (!sessions.access(userSession, accessRoles)) {
+	if (!access) {
 		return {
 			error: 'Доступ запрещен',
 			res: null,
 		};
 	}
-
 	await addComment(userId, materialId, content);
 
 	const material = await getMaterial(materialId);
