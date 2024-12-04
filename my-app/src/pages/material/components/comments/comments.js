@@ -15,6 +15,7 @@ const CommentsContainer = ({ className, comments, materialId }) => {
 
 	const onNewCommentAdd = (userId, materialId, content) => {
 		dispatch(addCommentAsync(requestServer, userId, materialId, content));
+		setNewComment('');
 	};
 	return (
 		<div className={className}>
@@ -48,7 +49,6 @@ const CommentsContainer = ({ className, comments, materialId }) => {
 };
 
 export const Comments = styled(CommentsContainer)`
-	display: flex;
 	width: 580px;
 	margin: 0 auto;
 
@@ -59,7 +59,7 @@ export const Comments = styled(CommentsContainer)`
 	}
 
 	& .new-comment textarea {
-		width: 100%;
+		width: 550px;
 		height: 120px;
 		font-size: 18px;
 		resize: none;
