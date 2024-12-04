@@ -7,3 +7,4 @@ export * from './update-user-role';
 export * from './remove-user';
 export * from './fetch-material';
 export * from './add-material-comment';
+export * from './remove-material-comment';

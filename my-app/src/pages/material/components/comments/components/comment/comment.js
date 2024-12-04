@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../../../components';
+import { useDispatch } from 'react-redux';
+import { removeCommentAsync } from '../../../../../../actions';
+import { useServerRequest } from '../../../../../../hooks';
 
-const CommentContainer = ({ className, id, author, content, publishedAt }) => {
+const CommentContainer = ({ className, materialId, id, author, content, publishedAt }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+	const onCommentRemove = (id) => {
+		dispatch(removeCommentAsync(requestServer, materialId, id));
+	};
+
 	return (
 		<div className={className}>
 			<div className="comment">
@@ -31,7 +40,7 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 							id="fa-trash-o"
 							size="21px"
 							margin="0 0 0 10px"
-							onClick={() => {}}
+							onClick={() => onCommentRemove(id)}
 			/>	
 		</div>
 	);
