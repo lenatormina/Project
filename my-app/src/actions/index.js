@@ -5,3 +5,5 @@ export * from './load-material-async';
 export * from './set-material-data';
 export * from './add-comment-async';
 export * from './remove-comment-async';
+export * from './close-modal';
+export * from './open-modal';
