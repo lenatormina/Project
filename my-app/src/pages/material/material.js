@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useEffect } from 'react';
-import { MaterialContent, Comments } from './components';
-import { useParams } from 'react-router-dom';
+import { MaterialContent, Comments, MaterialForm } from './components';
+import { useMatch, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
 import { loadMaterialAsync } from '../../actions';
 import { selectMaterial } from '../../selectors';
@@ -10,6 +10,7 @@ import { selectMaterial } from '../../selectors';
 const MaterialContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const params = useParams();
+	const isEditing = useMatch('/material/:id/edit');
 	const requestServer = useServerRequest();
 	const material = useSelector(selectMaterial);
 	useEffect(() => {
@@ -18,8 +19,14 @@ const MaterialContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-			<MaterialContent material={material} />
-			<Comments comments={material.comments} materialId={material.id} />
+		{isEditing ? (
+			<MaterialForm material={material} />
+		) : ( 
+			<>
+				<MaterialContent material={material} />
+				<Comments comments={material.comments} materialId={material.id} />
+			</>
+		)}
 		</div>
 	);
 };
