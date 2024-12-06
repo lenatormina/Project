@@ -38,7 +38,7 @@ const MaterialFormContainer = ({
 		<div className={className}>
 			<Input ref = {imageRef} defaultValue = {imageUrl} placeholder="Изображение..." />
 			<Input ref = {titleRef} defaultValue = {title} placeholder="Заголовок..."/>
-			<SpecialPanel publishedAt={publishedAt} margin="20px 0" editButton = {
+			<SpecialPanel id = {id} publishedAt={publishedAt} margin="20px 0" editButton = {
 				<Icon
 					id="fa-floppy-o"
 					size="21px"

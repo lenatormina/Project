@@ -9,3 +9,4 @@ export * from './fetch-material';
 export * from './add-material-comment';
 export * from './remove-material-comment';
 export * from './save-material'
+export * from './remove-material'

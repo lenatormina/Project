@@ -1,7 +1,26 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../components';
+import { useDispatch } from 'react-redux';
+import { openModal, CLOSE_MODAL, removeMaterialAsync } from '../../../../actions';
+import { useServerRequest } from '../../../../hooks';
+import { useNavigate } from 'react-router-dom';
 
-const SpecialPanelContainer = ({className, publishedAt, editButton}) => {
+const SpecialPanelContainer = ({className, id, publishedAt, editButton}) => {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const requestServer = useServerRequest()
+	const onMaterialRemove = (id) => {
+			dispatch(openModal({
+				text: 'Удалить материал?',
+				onConfirm: ()=>{
+					dispatch(removeMaterialAsync(requestServer, id)).then(()=>{
+						navigate('/');
+					});
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL)
+			}))
+		};
     return (
         <div className={className}>
 				<div className="published-at">
@@ -9,13 +28,12 @@ const SpecialPanelContainer = ({className, publishedAt, editButton}) => {
 						id="fa-calendar-o"
 						margin="0 7px 0 0"
 						size="18px"
-						onClick={() => {}}
 					/>
 					{publishedAt}
 				</div>
 				<div className="buttons">
                     {editButton}
-					<Icon id="fa-trash-o" size="21px" onClick={() => {}} />
+					<Icon id="fa-trash-o" size="21px" onClick={() => onMaterialRemove(id)} />
 				</div>
 			</div>
     )

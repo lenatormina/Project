@@ -16,6 +16,8 @@ export const materialReducer = (state = initialMaterialState, action) => {
 				...state,
 				...action.payload,
 			};
+		case ACTION_TYPE.RESET_MATERIAL_DATA:
+			return initialMaterialState
 		default:
 			return state;
 	}
