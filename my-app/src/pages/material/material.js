@@ -10,7 +10,8 @@ import { selectMaterial } from '../../selectors';
 const MaterialContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const params = useParams();
-	const isEditing = useMatch('/material/:id/edit');
+	const isEditing = useMatch('/material');
+	const isCreating = useMatch('/material/:id/edit');
 	const requestServer = useServerRequest();
 	const material = useSelector(selectMaterial);
 
@@ -19,12 +20,16 @@ const MaterialContainer = ({ className }) => {
 	},[dispatch])
 
 	useEffect(() => {
+		if (isCreating){
+			return
+		}
+
 		dispatch(loadMaterialAsync(requestServer, params.id));
-	}, [dispatch, requestServer, params.id]);
+	}, [dispatch, requestServer, params.id, isCreating]);
 
 	return (
 		<div className={className}>
-		{isEditing ? (
+		{isCreating || isEditing ? (
 			<MaterialForm material={material} />
 		) : ( 
 			<>

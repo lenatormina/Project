@@ -42,7 +42,6 @@ const MaterialFormContainer = ({
 				<Icon
 					id="fa-floppy-o"
 					size="21px"
-					margin="0 10px 0 0 "
 					onClick={onSave}
 				/>
 			} />
@@ -66,6 +65,8 @@ export const MaterialForm = styled(MaterialFormContainer)`
 	}
 
 	& .material-text {
+		min-height: 80px;
+		border: 1px solid #000;
 		font-size: 18px;
 		white-space: pre-line;
 	}

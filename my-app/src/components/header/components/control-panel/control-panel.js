@@ -51,12 +51,11 @@ const ControlPanelContainer = ({ className }) => {
 			</RigthAlign>
 			<RigthAlign>
 				<Icon id="fa-backward" margin="5px 0 0 0" onClick={() => navigate(-1)} />
-
 				<Link to="/material">
-					<Icon id="fa-file-text-o" margin="5px 0 0 15px" />
+					<Icon id="fa-file-text-o" margin="5px 0 0 15px"/>
 				</Link>
 				<Link to="/users">
-					<Icon id="fa-users" margin="5px 0 0 15px" />
+					<Icon id="fa-users" margin="5px 0 0 15px"/>
 				</Link>
 			</RigthAlign>
 		</div>

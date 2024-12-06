@@ -48,7 +48,7 @@ export const App = () => {
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
-					<Route path="/material" element={<div>Новый материал</div>} />
+					<Route path="/material" element={<Material />} />
 					<Route path="/material/:id" element={<Material />} />
 					<Route path="/material/:id/edit" element={<Material />} />
 					<Route path="*" element={<div>Ошибка</div>} />

@@ -13,3 +13,4 @@ export * from './add-session';
 export * from './delete-comment';
 export * from './update-material'
 export * from './delete-material'
+export * from './add-material'
