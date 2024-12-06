@@ -1,24 +1,37 @@
 import styled from 'styled-components';
 import { Input, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
+import { useRef } from 'react';
+import { sanitizeContent } from './utils';
 
 const MaterialFormContainer = ({
 	className,
-	material: { id, title, imageUrl, content, publishedAt },
+	material: { title, imageUrl, content, publishedAt },
 }) => {
+	const imageRef = useRef(null);
+	const titleRef = useRef(null);
+	const contentRef = useRef(null);
+
+	const onSave = () => {
+		const newImageUrl = imageRef.current.value;
+		const newTitleUrl = titleRef.current.value;
+		const newContentUrl = sanitizeContent(contentRef.current.innerHTML)
+	};
+
 	return (
 		<div className={className}>
-			<Input defaultValue = {imageUrl} />
-			<Input defaultValue = {title} />
+			<Input ref = {imageRef} defaultValue = {imageUrl} placeholder="Изображение..." />
+			<Input ref = {titleRef} defaultValue = {title} placeholder="Заголовок..."/>
 			<SpecialPanel publishedAt={publishedAt} margin="20px 0" editButton = {
 				<Icon
 					id="fa-floppy-o"
 					size="21px"
 					margin="0 10px 0 0 "
-					onClick={() => {}}
+					onClick={onSave}
 				/>
 			} />
 			<div 
+				ref = {contentRef}
 				contentEditable={true} 
 				suppressContentEditableWarning={true} 
 				className="material-text"

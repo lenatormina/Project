@@ -32,5 +32,6 @@ export const MaterialContent = styled(MaterialContentContainer)`
 
 	& .material-text {
 		font-size: 18px;
+		white-space: pre-line;
 	}
 `;
