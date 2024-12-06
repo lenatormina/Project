@@ -3,19 +3,35 @@ import { Input, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 import { useRef } from 'react';
 import { sanitizeContent } from './utils';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { saveMaterialAsync } from '../../../../actions';
+import { useServerRequest } from '../../../../hooks';
 
 const MaterialFormContainer = ({
 	className,
-	material: { title, imageUrl, content, publishedAt },
+	material: { id, title, imageUrl, content, publishedAt },
 }) => {
 	const imageRef = useRef(null);
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
 
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const requestServer = useServerRequest()
+
 	const onSave = () => {
 		const newImageUrl = imageRef.current.value;
-		const newTitleUrl = titleRef.current.value;
-		const newContentUrl = sanitizeContent(contentRef.current.innerHTML)
+		const newTitle = titleRef.current.value;
+		const newContent = sanitizeContent(contentRef.current.innerHTML)
+
+		dispatch(
+			saveMaterialAsync(requestServer, {
+				id,
+				imageUrl: newImageUrl,
+				title: newTitle,
+				content: newContent
+		})).then(() => navigate(`/material/${id}`))
 	};
 
 	return (

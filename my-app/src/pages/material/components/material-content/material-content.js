@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { H2, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
+import { useNavigate } from 'react-router-dom';
 
 const MaterialContentContainer = ({
 	className,
-	material: { title, imageUrl, content, publishedAt },
+	material: { id, title, imageUrl, content, publishedAt },
 }) => {
+	const navigate = useNavigate()
 	return (
 		<div className={className}>
 			<img src={imageUrl} alt={title} />
@@ -15,7 +17,7 @@ const MaterialContentContainer = ({
 					id="fa-pencil-square-o"
 					size="21px"
 					margin="0 10px 0 0 "
-					onClick={() => {}}
+					onClick={() => navigate(`/material/${id}/edit`)}
 				/>
 			} />
 			<div className="material-text">{content}</div>
