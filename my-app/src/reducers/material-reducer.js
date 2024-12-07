@@ -1,4 +1,5 @@
 import { ACTION_TYPE } from '../actions';
+
 const initialMaterialState = {
 	id: '',
 	title: '',
@@ -17,7 +18,7 @@ export const materialReducer = (state = initialMaterialState, action) => {
 				...action.payload,
 			};
 		case ACTION_TYPE.RESET_MATERIAL_DATA:
-			return initialMaterialState
+			return initialMaterialState;
 		default:
 			return state;
 	}

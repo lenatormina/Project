@@ -1,4 +1,4 @@
-export const updateMaterial = ({id, imageUrl, title, content}) =>
+export const updateMaterial = ({ id, imageUrl, title, content }) =>
 	fetch(`http://localhost:3001/materials/${id}`, {
 		method: 'PATCH',
 		headers: {
@@ -9,4 +9,4 @@ export const updateMaterial = ({id, imageUrl, title, content}) =>
 			title,
 			content,
 		}),
-	}).then((loadedMaterial)=> loadedMaterial.json())
+	}).then((loadedMaterial) => loadedMaterial.json());

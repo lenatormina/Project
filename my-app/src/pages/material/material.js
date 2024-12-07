@@ -15,13 +15,13 @@ const MaterialContainer = ({ className }) => {
 	const requestServer = useServerRequest();
 	const material = useSelector(selectMaterial);
 
-	useLayoutEffect(()=>{
-		dispatch(RESET_MATERIAL_DATA)
-	},[dispatch])
-
+	useLayoutEffect(() => {
+		dispatch(RESET_MATERIAL_DATA);
+	}, [dispatch, isCreating]);
+	console.log(material);
 	useEffect(() => {
-		if (isCreating){
-			return
+		if (isCreating) {
+			return;
 		}
 
 		dispatch(loadMaterialAsync(requestServer, params.id));
@@ -29,14 +29,14 @@ const MaterialContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-		{isCreating || isEditing ? (
-			<MaterialForm material={material} />
-		) : ( 
-			<>
-				<MaterialContent material={material} />
-				<Comments comments={material.comments} materialId={material.id} />
-			</>
-		)}
+			{isCreating || isEditing ? (
+				<MaterialForm material={material} />
+			) : (
+				<>
+					<MaterialContent material={material} />
+					<Comments comments={material.comments} materialId={material.id} />
+				</>
+			)}
 		</div>
 	);
 };
