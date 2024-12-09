@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { MaterialCard } from '../../components';
+import { MaterialCard } from './components';
 import { useServerRequest } from '../../hooks';
 
 const MainContainer = ({ className }) => {
