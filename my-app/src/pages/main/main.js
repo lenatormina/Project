@@ -15,17 +15,26 @@ const MainContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-			{materials.map(({ id, title, publishedAt, commentsCount }) => (
-				<MaterialCard
-					key={id}
-					id={id}
-					title={title}
-					publishedAt={publishedAt}
-					commentsCount={commentsCount}
-				/>
-			))}
+			<div className="material-list">
+				{materials.map(({ id, title, imageUrl, publishedAt, commentsCount }) => (
+					<MaterialCard
+						key={id}
+						id={id}
+						title={title}
+						imageUrl={imageUrl}
+						publishedAt={publishedAt}
+						commentsCount={commentsCount}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };
 
-export const Main = styled(MainContainer)``;
+export const Main = styled(MainContainer)`
+	& .material-list {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 20px;
+	}
+`;

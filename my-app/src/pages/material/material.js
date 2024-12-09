@@ -10,8 +10,8 @@ import { selectMaterial } from '../../selectors';
 const MaterialContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const params = useParams();
-	const isEditing = useMatch('/material');
-	const isCreating = useMatch('/material/:id/edit');
+	const isEditing = useMatch('/material/:id/edit');
+	const isCreating = useMatch('/material');
 	const requestServer = useServerRequest();
 	const material = useSelector(selectMaterial);
 
