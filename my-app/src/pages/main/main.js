@@ -7,12 +7,16 @@ import { PAGINATION_LIMIT } from '../../constants';
 const MainContainer = ({ className }) => {
 	const [materials, setMaterials] = useState([]);
 	const [page, setPage] = useState(1);
+	const [lastPage, setLastPage] = useState(1);
 	const requestServer = useServerRequest();
 
 	useEffect(() => {
-		requestServer('fetchMaterials', page, PAGINATION_LIMIT).then((materials) => {
-			setMaterials(materials.res);
-		});
+		requestServer('fetchMaterials', page, PAGINATION_LIMIT).then(
+			({ materials, links }) => {
+				setMaterials(materials.res);
+				setLastPage(2);
+			},
+		);
 	}, [requestServer, page]);
 
 	return (
@@ -29,7 +33,9 @@ const MainContainer = ({ className }) => {
 					/>
 				))}
 			</div>
-			<Pagination page={page} setPage={setPage} />
+			{lastPage > 1 && (
+				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
+			)}
 		</div>
 	);
 };
