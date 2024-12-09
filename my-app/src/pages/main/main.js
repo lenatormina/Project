@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MaterialCard, Pagination } from './components';
 import { useServerRequest } from '../../hooks';
 import { PAGINATION_LIMIT } from '../../constants';
+import { getLastPageFromLinks } from './utils';
 
 const MainContainer = ({ className }) => {
 	const [materials, setMaterials] = useState([]);
@@ -12,9 +13,10 @@ const MainContainer = ({ className }) => {
 
 	useEffect(() => {
 		requestServer('fetchMaterials', page, PAGINATION_LIMIT).then(
-			({ materials, links }) => {
-				setMaterials(materials.res);
-				setLastPage(2);
+			({ res: { materials, links } }) => {
+				setMaterials(materials);
+				console.log(getLastPageFromLinks(links));
+				setLastPage(getLastPageFromLinks(links));
 			},
 		);
 	}, [requestServer, page]);
