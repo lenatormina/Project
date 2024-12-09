@@ -7,14 +7,14 @@ export const fetchMaterial = async (materialId) => {
 
 	const users = await getUsers();
 
-	const commentsWithAuthor = comments.map((comment)=>{
-		const user = users.find(({id}) => id === comment.authorId);
+	const commentsWithAuthor = comments.map((comment) => {
+		const user = users.find(({ id }) => id === comment.authorId);
 
 		return {
 			...comment,
 			author: user?.login,
-		}
-	})
+		};
+	});
 
 	return {
 		error: null,

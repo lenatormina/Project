@@ -43,37 +43,65 @@
     },
     {
       "id": "002",
-      "title": "Материал2",
-      "image_url": "https://impulse35.ru/wp-content/uploads/2022/04/10.jpg",
-      "content": "Текст для статьи",
+      "title": "Материал 2",
+      "image_url": "https://kvantorium69.ru/wp-content/uploads/2019/07/2342891.png",
+      "content": "Текст для материала",
       "published_at": "2024-10-20"
     },
     {
       "id": "003",
-      "title": "Материал3",
-      "image_url": "https://impulse35.ru/wp-content/uploads/2022/04/10.jpg",
+      "title": "Материал 3",
+      "image_url": "https://galaktika64.ru/wp-content/uploads/2023/11/matematika_1.png",
       "content": "Текст для статьи",
       "published_at": "2024-10-10"
     },
     {
       "id": "fdba",
-      "image_url": "https://impulse35.ru/wp-content/uploads/2022/04/10.jpg",
+      "image_url": "https://s3.stroi-news.ru/img/kartinki-dlya-proekta-po-matematike-7.jpg",
       "published_at": "2048-07-02 06:26",
-      "title": "Материал4",
-      "content": "Текст1234"
+      "title": "Материал 4",
+      "content": "Текст"
     },
     {
       "id": "e483",
-      "image_url": "https://timeweb.com/ru/community/article/76/764f95f44260ef4aafaa2e80a0f59784.jpg",
+      "image_url": "https://www.ferra.ru/thumb/570x0/filters:quality(75)/imgs/2018/11/26/16/2586671/44e77f06a28085e2c2a00094eb734ee26ff45a54.jpg",
       "published_at": "2062-04-25 12:25",
-      "title": "Материал5",
+      "title": "Материал 5",
       "content": "Текст"
     },
     {
       "id": "247f",
-      "image_url": "https://timeweb.com/ru/community/article/76/764f95f44260ef4aafaa2e80a0f59784.jpg",
+      "image_url": "https://www.hse.ru/data/2016/02/29/1125485867/ya.png",
       "published_at": "2040-02-18 05:12",
-      "title": "Материал6",
+      "title": "Материал 6",
+      "content": "Текст"
+    },
+    {
+      "id": "d50b",
+      "image_url": "https://hacker-son.com/seeds/news/7-1.jpg",
+      "published_at": "2055-05-27 05:52",
+      "title": "Материал 7",
+      "content": "Текст"
+    },
+    {
+      "id": "861d",
+      "image_url": "https://cdn.tbank.ru/static/pages/files/f635db3a-f041-4950-8807-909f222c28bf.png",
+      "published_at": "2036-11-13 14:01",
+      "title": "Материал 8",
+      "content": "Текст"
+    },
+    {
+      "id": "dfe6",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Mathematics.png",
+      "published_at": "2037-11-22 15:14",
+      "title": "Материал 9",
+      "content": "Текст"
+    },
+    {
+      "id": "69e1",
+      "image_url": "https://kvantvp.dm-centre.ru/wp-content/uploads/2020/10/math-500x440.png",
+      "published_at": "2060-07-05 09:38",
+      "title": "Материал 10",
       "content": "Текст"
     }
   ],
@@ -100,17 +128,5 @@
       "content": "Первый комментарий"
     }
   ],
-  "sessions": [
-    {
-      "id": "504a",
-      "hash": "0.95483295302343251798049550416180863976478576660156",
-      "user": {
-        "id": "001",
-        "login": "elena",
-        "password": "qwerty123",
-        "registeredAt": "2024-10-30",
-        "roleId": 0
-      }
-    }
-  ]
+  "sessions": []
 }

@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { MaterialCard } from './components';
+import { MaterialCard, Pagination } from './components';
 import { useServerRequest } from '../../hooks';
+import { PAGINATION_LIMIT } from '../../constants';
 
 const MainContainer = ({ className }) => {
 	const [materials, setMaterials] = useState([]);
+	const [page, setPage] = useState(1);
 	const requestServer = useServerRequest();
 
 	useEffect(() => {
-		requestServer('fetchMaterials').then((materials) => {
+		requestServer('fetchMaterials', page, PAGINATION_LIMIT).then((materials) => {
 			setMaterials(materials.res);
 		});
-	}, [requestServer]);
+	}, [requestServer, page]);
 
 	return (
 		<div className={className}>
@@ -27,6 +29,7 @@ const MainContainer = ({ className }) => {
 					/>
 				))}
 			</div>
+			<Pagination page={page} setPage={setPage} />
 		</div>
 	);
 };
