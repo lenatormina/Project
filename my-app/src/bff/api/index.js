@@ -11,6 +11,7 @@ export * from './get-session';
 export * from './delete-session';
 export * from './add-session';
 export * from './delete-comment';
-export * from './update-material'
-export * from './delete-material'
-export * from './add-material'
+export * from './update-material';
+export * from './delete-material';
+export * from './add-material';
+export * from './get-materials';
