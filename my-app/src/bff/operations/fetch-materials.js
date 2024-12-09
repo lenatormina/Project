@@ -6,6 +6,7 @@ export const fetchMaterials = async (page, limit) => {
 		getMaterials(page, limit),
 		getComments(),
 	]);
+
 	console.log(links);
 	return {
 		error: null,
