@@ -7,29 +7,34 @@ const MaterialContentContainer = ({
 	className,
 	material: { id, title, imageUrl, content, publishedAt },
 }) => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	return (
 		<div className={className}>
-			<img src={imageUrl} alt={title} />
 			<H2>{title}</H2>
-			<SpecialPanel id = {id} publishedAt={publishedAt} margin="-20px 0 20px" editButton = {
-				<Icon
-					id="fa-pencil-square-o"
-					size="21px"
-					margin="0 10px 0 0 "
-					onClick={() => navigate(`/material/${id}/edit`)}
-				/>
-			} />
+			<SpecialPanel
+				id={id}
+				publishedAt={publishedAt}
+				margin="-20px 0 20px"
+				editButton={
+					<Icon
+						id="fa-pencil-square-o"
+						size="21px"
+						margin="0 10px 0 0 "
+						onClick={() => navigate(`/material/${id}/edit`)}
+					/>
+				}
+			/>
 			<div className="material-text">{content}</div>
+			<img src={imageUrl} alt={title} />
 		</div>
 	);
 };
 
 export const MaterialContent = styled(MaterialContentContainer)`
 	& img {
-		float: left;
-		margin: 0 20px 10px 0;
-		width: 300px;
+		margin: 15px -55px 10px;
+		width: 950px;
+		display: block;
 	}
 
 	& .material-text {
