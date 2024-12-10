@@ -36,73 +36,73 @@
   "materials": [
     {
       "id": "001",
-      "title": "Материал 1",
-      "image_url": "https://impulse35.ru/wp-content/uploads/2022/04/10.jpg",
-      "content": "Треугольник является одной из важнейших геометрических фигур, повсеместно используемых в науке и технике, поэтому исследование его свойств проводилось начиная с глубокой древности",
+      "title": "Треугольники",
+      "image_url": "https://i.postimg.cc/wBRb8C7B/IMG-4944.png",
+      "content": "Треугольником называется фигура, которая состоит из трёх точек, не лежащих на одной прямой, и трёх отрезков, попарно соединяющих эти точки. Точки называются вершинами треугольника, а отрезки — его сторонами.",
       "published_at": "2024-10-30"
     },
     {
       "id": "002",
-      "title": "Материал 2",
-      "image_url": "https://kvantorium69.ru/wp-content/uploads/2019/07/2342891.png",
-      "content": "Текст для материала",
+      "title": "Четырёхугольники",
+      "image_url": "https://i.postimg.cc/JncxRMmR/image.png",
+      "content": "Четырехугольником называется фигура, которая состоит из четырех точек и четырех последовательно соединяющих их отрезков. При этом никакие три из данных точек не лежат на одной прямой, а соединяющие их отрезки не пересекаются.",
       "published_at": "2024-10-20"
     },
     {
       "id": "003",
-      "title": "Материал 3",
-      "image_url": "https://galaktika64.ru/wp-content/uploads/2023/11/matematika_1.png",
-      "content": "Текст для статьи",
+      "title": "Плоские фигуры",
+      "image_url": "https://i.postimg.cc/tgGFJwBJ/image.png",
+      "content": "Плocкиe гeoмeтpичecкиe фигуpы — этo фигуpы, вce тoчки кoтopыx лeжaт нa oднoй плocкocти.",
       "published_at": "2024-10-10"
     },
     {
       "id": "fdba",
-      "image_url": "https://s3.stroi-news.ru/img/kartinki-dlya-proekta-po-matematike-7.jpg",
+      "image_url": "https://i.postimg.cc/sXwWnXsG/image.png",
       "published_at": "2048-07-02 06:26",
-      "title": "Материал 4",
-      "content": "Текст"
+      "title": "Объёмные фигуры",
+      "content": "Oбъeмныe гeoмeтpичecкиe фигуpы — этo фигуpы, нe вce тoчки кoтopыx лeжaт нa oднoй плocкocти."
     },
     {
       "id": "e483",
-      "image_url": "https://www.ferra.ru/thumb/570x0/filters:quality(75)/imgs/2018/11/26/16/2586671/44e77f06a28085e2c2a00094eb734ee26ff45a54.jpg",
+      "image_url": "https://i.postimg.cc/xjXGsvN0/IMG-4945.jpg",
       "published_at": "2062-04-25 12:25",
-      "title": "Материал 5",
-      "content": "Текст"
+      "title": "Производная функции",
+      "content": "Производная функции – отношение приращения функции к приращению аргумента при бесконечно малом приращении аргумента."
     },
     {
       "id": "247f",
-      "image_url": "https://www.hse.ru/data/2016/02/29/1125485867/ya.png",
+      "image_url": "https://i.postimg.cc/cJWT2vyF/2024-12-10-15-45-36.png",
       "published_at": "2040-02-18 05:12",
-      "title": "Материал 6",
-      "content": "Текст"
+      "title": "Свойства логарифмов",
+      "content": "Логарифмы — это математические функции, которые являются обратными к операциям возведения в степень."
     },
     {
       "id": "d50b",
-      "image_url": "https://hacker-son.com/seeds/news/7-1.jpg",
+      "image_url": "https://i.postimg.cc/tg9tD8Wf/2024-12-10-15-49-22.png",
       "published_at": "2055-05-27 05:52",
-      "title": "Материал 7",
-      "content": "Текст"
+      "title": "Тригонометрический круг",
+      "content": "Главный инструмент тригонометрии — это тригонометрическая окружность, она позволяет измерять углы, находить их синусы, косинусы и прочее."
     },
     {
       "id": "861d",
-      "image_url": "https://cdn.tbank.ru/static/pages/files/f635db3a-f041-4950-8807-909f222c28bf.png",
+      "image_url": "https://i.postimg.cc/yWq0RG7L/2024-12-10-15-51-06.png",
       "published_at": "2036-11-13 14:01",
-      "title": "Материал 8",
-      "content": "Текст"
+      "title": "Таблица производных",
+      "content": "Производная функции – отношение приращения функции к приращению аргумента при бесконечно малом приращении аргумента."
     },
     {
       "id": "dfe6",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Mathematics.png",
+      "image_url": "https://i.postimg.cc/nhGwH41y/2024-12-10-15-52-25.png",
       "published_at": "2037-11-22 15:14",
-      "title": "Материал 9",
-      "content": "Текст"
+      "title": "Методы рационализации",
+      "content": "Метод рационализации — это способ решения некоторых неравенств, который позволяет довольно сильно упростить решение и вычисления."
     },
     {
       "id": "69e1",
-      "image_url": "https://kvantvp.dm-centre.ru/wp-content/uploads/2020/10/math-500x440.png",
+      "image_url": "https://i.postimg.cc/44pvkJPM/2024-12-10-15-55-16.png",
       "published_at": "2060-07-05 09:38",
-      "title": "Материал 10",
-      "content": "Текст"
+      "title": "Решение неравенств с модулем",
+      "content": "Чтобы решить неравенство, содержащее модули, нужно раскрыть модули."
     }
   ],
   "comments": [
@@ -128,17 +128,5 @@
       "content": "Первый комментарий"
     }
   ],
-  "sessions": [
-    {
-      "id": "3c5a",
-      "hash": "0.85964571996355765293174044927582144737243652343750",
-      "user": {
-        "id": "001",
-        "login": "elena",
-        "password": "qwerty123",
-        "registeredAt": "2024-10-30",
-        "roleId": 0
-      }
-    }
-  ]
+  "sessions": []
 }
