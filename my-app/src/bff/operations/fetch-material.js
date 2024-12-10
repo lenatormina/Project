@@ -1,7 +1,20 @@
 import { getMaterial, getComments, getUsers } from '../api';
 
 export const fetchMaterial = async (materialId) => {
-	const material = await getMaterial(materialId);
+	let material;
+	let error;
+	try {
+		material = await getMaterial(materialId);
+	} catch (materialError) {
+		error = materialError;
+	}
+
+	if (error) {
+		return {
+			error,
+			res: null,
+		};
+	}
 
 	const comments = await getComments(materialId);
 

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { MaterialContent, Comments, MaterialForm } from './components';
 import { useMatch, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
@@ -8,6 +8,7 @@ import { loadMaterialAsync, RESET_MATERIAL_DATA } from '../../actions';
 import { selectMaterial } from '../../selectors';
 
 const MaterialContainer = ({ className }) => {
+	const [error, setError] = useState(true);
 	const dispatch = useDispatch();
 	const params = useParams();
 	const isEditing = useMatch('/material/:id/edit');
@@ -23,10 +24,16 @@ const MaterialContainer = ({ className }) => {
 			return;
 		}
 
-		dispatch(loadMaterialAsync(requestServer, params.id));
+		dispatch(loadMaterialAsync(requestServer, params.id)).then((materialData) => {
+			if (materialData.error) {
+				setError(materialData.error);
+			}
+		});
 	}, [dispatch, requestServer, params.id, isCreating]);
 
-	return (
+	return error ? (
+		<div>{error}</div>
+	) : (
 		<div className={className}>
 			{isCreating || isEditing ? (
 				<MaterialForm material={material} />

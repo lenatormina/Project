@@ -1,7 +1,9 @@
 import { setMaterialData } from './set-material-data';
 
-export const loadMaterialAsync = (requestServer, materialId) => (dispatch) => {
+export const loadMaterialAsync = (requestServer, materialId) => (dispatch) =>
 	requestServer('fetchMaterial', materialId).then((materialData) => {
-		dispatch(setMaterialData(materialData.res));
+		if (materialData.res) {
+			dispatch(setMaterialData(materialData.res));
+		}
+		return materialData;
 	});
-};
