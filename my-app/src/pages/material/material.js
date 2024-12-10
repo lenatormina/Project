@@ -6,11 +6,13 @@ import { useMatch, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
 import { loadMaterialAsync, RESET_MATERIAL_DATA } from '../../actions';
 import { selectMaterial } from '../../selectors';
+import { Error } from '../../components';
 
 const MaterialContainer = ({ className }) => {
 	const [error, setError] = useState(true);
 	const dispatch = useDispatch();
 	const params = useParams();
+	const [isLoading, setIsLoading] = useState(true);
 	const isEditing = useMatch('/material/:id/edit');
 	const isCreating = useMatch('/material');
 	const requestServer = useServerRequest();
@@ -21,18 +23,22 @@ const MaterialContainer = ({ className }) => {
 	}, [dispatch, isCreating]);
 	useEffect(() => {
 		if (isCreating) {
+			setIsLoading(false);
 			return;
 		}
 
 		dispatch(loadMaterialAsync(requestServer, params.id)).then((materialData) => {
-			if (materialData.error) {
-				setError(materialData.error);
-			}
+			setError(materialData.error);
+			setIsLoading(false);
 		});
 	}, [dispatch, requestServer, params.id, isCreating]);
 
+	if (isLoading) {
+		return null;
+	}
+
 	return error ? (
-		<div>{error}</div>
+		<Error error={error} />
 	) : (
 		<div className={className}>
 			{isCreating || isEditing ? (

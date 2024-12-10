@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import { Header, Footer, Modal } from './components';
+import { Header, Footer, Modal, Error } from './components';
 import { Authorization, Registration, Users, Material, Main } from './pages';
 import styled from 'styled-components';
 import { useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from './actions';
+import { ERROR } from './constants';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -52,7 +53,7 @@ export const App = () => {
 					<Route path="/material" element={<Material />} />
 					<Route path="/material/:id" element={<Material />} />
 					<Route path="/material/:id/edit" element={<Material />} />
-					<Route path="*" element={<div>Ошибка</div>} />
+					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
 				</Routes>
 			</Page>
 			<Footer />
