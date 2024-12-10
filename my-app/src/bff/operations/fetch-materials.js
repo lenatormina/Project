@@ -1,13 +1,11 @@
 import { getMaterials, getComments } from '../api';
 import { getCommentsCount } from '../utils';
 
-export const fetchMaterials = async (page, limit) => {
+export const fetchMaterials = async (searchPhrase, page, limit) => {
 	const [{ materials, links }, comments] = await Promise.all([
-		getMaterials(page, limit),
+		getMaterials(searchPhrase, page, limit),
 		getComments(),
 	]);
-
-	console.log(links);
 	return {
 		error: null,
 		res: {

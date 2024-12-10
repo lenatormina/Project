@@ -18,7 +18,6 @@ const MaterialContainer = ({ className }) => {
 	useLayoutEffect(() => {
 		dispatch(RESET_MATERIAL_DATA);
 	}, [dispatch, isCreating]);
-	console.log(material);
 	useEffect(() => {
 		if (isCreating) {
 			return;

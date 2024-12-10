@@ -1,7 +1,9 @@
 import { transformMaterial } from '../transformers';
 
-export const getMaterials = (page, limit) =>
-	fetch(`http://localhost:3001/materials?_page=${page}&_limit=${limit}`)
+export const getMaterials = (searchPhrase, page, limit) =>
+	fetch(
+		`http://localhost:3001/materials?title_like=${searchPhrase}&_page=${page}&_limit=${limit}`,
+	)
 		.then((loadedMaterials) =>
 			Promise.all([loadedMaterials.json(), loadedMaterials.headers.get('Link')]),
 		)
