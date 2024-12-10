@@ -41,4 +41,8 @@ export const MaterialContent = styled(MaterialContentContainer)`
 		font-size: 18px;
 		white-space: pre-line;
 	}
+
+	& H2 {
+		margin: 0;
+	}
 `;
