@@ -1,4 +1,5 @@
-import { getMaterial, getComments, getUsers } from '../api';
+import { getMaterial } from '../api';
+import { getMaterialsCommentsWithAuthor } from '../utils';
 
 export const fetchMaterial = async (materialId) => {
 	let material;
@@ -16,18 +17,7 @@ export const fetchMaterial = async (materialId) => {
 		};
 	}
 
-	const comments = await getComments(materialId);
-
-	const users = await getUsers();
-
-	const commentsWithAuthor = comments.map((comment) => {
-		const user = users.find(({ id }) => id === comment.authorId);
-
-		return {
-			...comment,
-			author: user?.login,
-		};
-	});
+	const commentsWithAuthor = await getMaterialsCommentsWithAuthor(materialId);
 
 	return {
 		error: null,

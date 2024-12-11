@@ -1,6 +1,7 @@
-import { addComment, getComments, getMaterial } from '../api';
+import { addComment, getMaterial } from '../api';
 import { sessions } from '../sessions';
 import { ROLE } from '../constants';
+import { getMaterialsCommentsWithAuthor } from '../utils';
 
 export const addMaterialComment = async (hash, userId, materialId, content) => {
 	const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR, ROLE.READER];
@@ -16,13 +17,13 @@ export const addMaterialComment = async (hash, userId, materialId, content) => {
 
 	const material = await getMaterial(materialId);
 
-	const comments = await getComments(materialId);
+	const commentsWithAuthor = await getMaterialsCommentsWithAuthor(materialId);
 
 	return {
 		error: null,
 		res: {
 			...material,
-			comments,
+			comments: commentsWithAuthor,
 		},
 	};
 };

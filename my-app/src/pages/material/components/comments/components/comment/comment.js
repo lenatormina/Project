@@ -1,30 +1,43 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../../../components';
-import { useDispatch } from 'react-redux';
-import { removeCommentAsync, openModal, CLOSE_MODAL  } from '../../../../../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../actions';
 import { useServerRequest } from '../../../../../../hooks';
+import { selectUserRole } from '../../../../../../selectors';
+import { ROLE } from '../../../../../../constants';
 
-const CommentContainer = ({ className, materialId, id, author, content, publishedAt }) => {
+const CommentContainer = ({
+	className,
+	materialId,
+	id,
+	author,
+	content,
+	publishedAt,
+}) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+	const userRole = useSelector(selectUserRole);
 	const onCommentRemove = (id) => {
-		dispatch(openModal({
-			text: 'Удалить комментарий?',
-			onConfirm: ()=>{
-				dispatch(removeCommentAsync(requestServer, materialId, id));
-				dispatch(CLOSE_MODAL);
-			},
-			onCancel: () => dispatch(CLOSE_MODAL)
-		}))
+		dispatch(
+			openModal({
+				text: 'Удалить комментарий?',
+				onConfirm: () => {
+					dispatch(removeCommentAsync(requestServer, materialId, id));
+					dispatch(CLOSE_MODAL);
+				},
+				onCancel: () => dispatch(CLOSE_MODAL),
+			}),
+		);
 	};
 
+	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole);
 	return (
 		<div className={className}>
 			<div className="comment">
 				<div className="information-panel">
 					<div className="author">
 						<Icon
-						    inactive={true}
+							inactive={true}
 							id="fa-user-circle-o"
 							size="18px"
 							margin="0 10px 0 0 "
@@ -45,12 +58,14 @@ const CommentContainer = ({ className, materialId, id, author, content, publishe
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			<Icon
-							id="fa-trash-o"
-							size="21px"
-							margin="0 0 0 10px"
-							onClick={() => onCommentRemove(id)}
-			/>	
+			{isAdminOrModerator && (
+				<Icon
+					id="fa-trash-o"
+					size="21px"
+					margin="0 0 0 10px"
+					onClick={() => onCommentRemove(id)}
+				/>
+			)}
 		</div>
 	);
 };
