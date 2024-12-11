@@ -5,6 +5,7 @@ import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../ac
 import { useServerRequest } from '../../../../../../hooks';
 import { selectUserRole } from '../../../../../../selectors';
 import { ROLE } from '../../../../../../constants';
+import PropTypes from 'prop-types';
 
 const CommentContainer = ({
 	className,
@@ -94,3 +95,11 @@ export const Comment = styled(CommentContainer)`
 		display: flex;
 	}
 }`;
+
+Comment.propTypes = {
+	materialId: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
+	author: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+};

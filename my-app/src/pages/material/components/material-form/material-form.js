@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { saveMaterialAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
+import PropTypes from 'prop-types';
 
 const MaterialFormContainer = ({
 	className,

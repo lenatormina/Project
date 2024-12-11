@@ -3,6 +3,7 @@ import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
 import { useState } from 'react';
 import { useServerRequest } from '../../../../hooks';
+import PropTypes from 'prop-types';
 
 const UserRowContainer = ({
 	className,

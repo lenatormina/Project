@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { ROLE } from '../../../../constants';
 import { checkAccess } from '../../../../utils';
 import { selectUserRole } from '../../../../selectors';
+import PropTypes from 'prop-types';
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	const dispatch = useDispatch();

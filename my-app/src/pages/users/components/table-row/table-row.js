@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const TableRowContainer = ({ className, children }) => (
 	<div className={className}>{children}</div>
