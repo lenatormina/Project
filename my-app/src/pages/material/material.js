@@ -6,15 +6,16 @@ import { useMatch, useParams } from 'react-router-dom';
 import { useServerRequest } from '../../hooks';
 import { loadMaterialAsync, RESET_MATERIAL_DATA } from '../../actions';
 import { selectMaterial } from '../../selectors';
-import { Error } from '../../components';
+import { Error, PrivateContent } from '../../components';
+import { ROLE } from '../../constants';
 
 const MaterialContainer = ({ className }) => {
-	const [error, setError] = useState(true);
+	const [error, setError] = useState(null);
 	const dispatch = useDispatch();
 	const params = useParams();
 	const [isLoading, setIsLoading] = useState(true);
-	const isEditing = useMatch('/material/:id/edit');
-	const isCreating = useMatch('/material');
+	const isEditing = !!useMatch('/material/:id/edit');
+	const isCreating = !!useMatch('/material');
 	const requestServer = useServerRequest();
 	const material = useSelector(selectMaterial);
 
@@ -37,20 +38,21 @@ const MaterialContainer = ({ className }) => {
 		return null;
 	}
 
-	return error ? (
-		<Error error={error} />
-	) : (
-		<div className={className}>
-			{isCreating || isEditing ? (
-				<MaterialForm material={material} />
-			) : (
-				<>
-					<MaterialContent material={material} />
-					<Comments comments={material.comments} materialId={material.id} />
-				</>
-			)}
-		</div>
-	);
+	const SpecificMaterialPage =
+		isCreating || isEditing ? (
+			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
+				<div className={className}>
+					<MaterialForm material={material} />
+				</div>
+			</PrivateContent>
+		) : (
+			<div className={className}>
+				<MaterialContent material={material} />
+				<Comments comments={material.comments} materialId={material.id} />
+			</div>
+		);
+
+	return error ? <Error error={error} /> : SpecificMaterialPage;
 };
 
 export const Material = styled(MaterialContainer)`
