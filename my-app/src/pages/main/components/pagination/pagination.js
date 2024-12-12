@@ -37,13 +37,11 @@ export const Pagination = styled(PaginationContainer)`
 
 	& .current-page {
 		width: 100%;
-		height: 32px;
-		margin: 0 5px;
-		font-size: 18px;
+		height: 40px;
+		font-size: 20px;
 		font-weight: 500;
 		line-height: 30px;
 		text-align: center;
-		border: 1px solid #000;
 	}
 `;
 Pagination.propTypes = {

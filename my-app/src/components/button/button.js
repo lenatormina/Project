@@ -12,14 +12,22 @@ export const Button = styled(ButtonContainer)`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 18px;
+	font-size: 20px;
 	width: ${({ width = '100%' }) => width};
-	height: 32px;
-	border: 1px solid #000;
-	background-color: #eee;
+	height: 30px;
+	border: none;
+	border-radius: 5px;
+	background-color: rgb(159, 91, 172);
+	transition: background-color 0.3s ease;
 
 	&:hover {
-		cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
+		background-color: rgb(98, 163, 187);
+		cursor: pointer;
+	}
+
+	&:disabled {
+		background-color: #ccc;
+		cursor: not-allowed;
 	}
 `;
 

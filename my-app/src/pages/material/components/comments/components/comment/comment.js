@@ -54,7 +54,7 @@ const CommentContainer = ({
 							margin="0 10px 0 0 "
 							onClick={() => {}}
 						/>
-						{publishedAt}
+						<div className="published">{publishedAt}</div>
 					</div>
 				</div>
 				<div className="comment-text">{content}</div>
@@ -82,7 +82,7 @@ export const Comment = styled(CommentContainer)`
 		border: 1px solid #000;
 	}
 
-    & .information-panel {
+	& .information-panel {
 		display: flex;
 		justify-content: space-between;
 	}
@@ -94,7 +94,11 @@ export const Comment = styled(CommentContainer)`
 	& .published-at {
 		display: flex;
 	}
-}`;
+	& .published {
+		display: flex;
+		align-items: center;
+	}
+`;
 
 Comment.propTypes = {
 	materialId: PropTypes.string.isRequired,

@@ -66,6 +66,7 @@ export const Main = styled(MainContainer)`
 	justify-content: space-between;
 
 	& .material-list {
+		justify-content: center;
 		display: flex;
 		flex-wrap: wrap;
 		padding: 20px 20px 80px;

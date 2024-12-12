@@ -14,7 +14,9 @@ export const TableRow = styled(TableRowContainer)`
 		display: flex;
 		padding: 0 10px;
 	}
+
 	& .login-column {
+		font-weight: bold;
 		width: 172px;
 	}
 
@@ -24,6 +26,10 @@ export const TableRow = styled(TableRowContainer)`
 
 	& .role-column {
 		width: auto;
+	}
+
+	&:hover {
+		background-color: #f9f9f9;
 	}
 `;
 

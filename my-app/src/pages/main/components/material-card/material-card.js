@@ -25,7 +25,7 @@ const MaterialCardContainer = ({
 								margin="0 7px 0 0"
 								size="18px"
 							/>
-							{publishedAt}
+							<div className="published-and-comments">{publishedAt}</div>
 						</div>
 						<div className="comments-count">
 							<Icon
@@ -34,7 +34,7 @@ const MaterialCardContainer = ({
 								margin="0 7px 0 0"
 								size="18px"
 							/>
-							{commentsCount}
+							<div className="published-and-comments">{commentsCount}</div>
 						</div>
 					</div>
 				</div>
@@ -48,38 +48,58 @@ export const MaterialCard = styled(MaterialCardContainer)`
 	flex-direction: column;
 	width: 280px;
 	margin: 20px;
-	border: 1px solid #000;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s;
 
 	& img {
-		display: block;
-		width: 280px;
-		height: 150px;
 		width: 100%;
+		height: 150px;
+		object-fit: cover;
 	}
 
 	& .material-card-footer {
-		padding: 5px;
-		border-top: 1px solid #000;
+		padding: 10px;
+		border-top: 1px solid #ddd;
+		background-color: rgb(239, 207, 207);
 	}
 
 	& h4 {
 		margin: 0;
+		font-size: 1.2rem;
+		color: #333;
 	}
 
 	& .material-card-info {
 		display: flex;
 		justify-content: space-between;
 		margin-top: 5px;
+		font-size: 0.9rem;
+		color: #666;
 	}
 
 	& .published-at {
 		display: flex;
+		font-size: 16px;
 	}
 
 	& .comments-count {
 		display: flex;
 	}
+
+	.published-and-comments {
+		display: flex;
+		align-items: center;
+	}
+
+	&:hover {
+		transform: scale(1.02);
+	}
 `;
+
 MaterialCard.propTypes = {
 	id: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,

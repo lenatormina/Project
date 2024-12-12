@@ -23,7 +23,7 @@ export const Footer = styled(FooterContainer)`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 1000px;
+	width: 100%;
 	height: 50px;
 	padding: 20px 40px;
 	font-weight: 600;

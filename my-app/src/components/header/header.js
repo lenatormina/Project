@@ -24,7 +24,7 @@ export const Header = styled(HeaderConteiner)`
 	justify-content: space-between;
 	position: fixed;
 	top: 0;
-	width: 1000px;
+	width: 100%;
 	height: 90px;
 	padding: 20px 40px;
 	background-color: #fff;

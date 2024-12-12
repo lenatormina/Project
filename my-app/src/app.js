@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import { Header, Footer, Modal, Error } from './components';
+import { Header, Footer, Modal, Error, Loader } from './components';
 import { Authorization, Registration, Users, Material, Main } from './pages';
 import styled from 'styled-components';
-import { useLayoutEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './actions';
+import { showLoader, hideLoader } from './actions';
+
 import { ERROR } from './constants';
 
 const AppColumn = styled.div`
@@ -12,7 +14,7 @@ const AppColumn = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	position: relative;
-	width: 1000px;
+	width: 100%;
 	min-height: 100%;
 	margin: 0 auto;
 	background: #fff;
@@ -20,12 +22,14 @@ const AppColumn = styled.div`
 
 const Page = styled.div`
 	padding: 120px 0 20px;
+	width: 100%;
 `;
 
 export const App = () => {
 	const dispatch = useDispatch();
+	const isLoading = useSelector((state) => state.loader.isLoading);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const currentUserDataJson = sessionStorage.getItem('userData');
 
 		if (!currentUserDataJson) {
@@ -41,10 +45,23 @@ export const App = () => {
 			}),
 		);
 	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(showLoader());
+
+		const timer = setTimeout(() => {
+			dispatch(hideLoader());
+		}, 1000);
+
+		return () => clearTimeout(timer);
+	}, [dispatch]);
+
 	return (
 		<AppColumn>
+			{isLoading && <Loader />}
 			<Header />
 			<Page>
+				{isLoading && <Loader />}
 				<Routes>
 					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
