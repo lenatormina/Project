@@ -4,14 +4,14 @@
       "id": "001",
       "login": "elena",
       "password": "qwerty123",
-      "registed_at": "2024-10-30",
+      "registed_at": "2024-10-30 10:08",
       "role_id": 0
     },
     {
       "id": "002",
       "login": "lena",
       "password": "qwerty",
-      "registed_at": "2024-10-31",
+      "registed_at": "2024-10-31 12:51",
       "role_id": 1
     },
     {

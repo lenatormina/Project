@@ -80,3 +80,9 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
 		top: -1px;
 	}
 `;
+
+SpecialPanel.propTypes = {
+	id: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	editButton: PropTypes.node.isRequired,
+};

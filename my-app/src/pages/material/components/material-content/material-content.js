@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { H2, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { PROP_TYPE } from '../../../../constants';
 
 const MaterialContentContainer = ({
 	className,
@@ -47,3 +47,7 @@ export const MaterialContent = styled(MaterialContentContainer)`
 		margin: 0;
 	}
 `;
+
+MaterialContent.propTypes = {
+	material: PROP_TYPE.MATERIAL.isRequired,
+};

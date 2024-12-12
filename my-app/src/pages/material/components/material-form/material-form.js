@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { saveMaterialAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
-import PropTypes from 'prop-types';
+import { PROP_TYPE } from '../../../../constants';
 
 const MaterialFormContainer = ({
 	className,
@@ -92,3 +92,7 @@ export const MaterialForm = styled(MaterialFormContainer)`
 		white-space: pre-line;
 	}
 `;
+
+MaterialForm.propTypes = {
+	material: PROP_TYPE.MATERIAL.isRequired,
+};

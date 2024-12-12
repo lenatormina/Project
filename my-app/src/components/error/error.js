@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { H2 } from '../h2/h2';
-import PropTypes from 'prop-types';
 import { PROP_TYPE } from '../../constants';
 
 const Div = styled.div`
