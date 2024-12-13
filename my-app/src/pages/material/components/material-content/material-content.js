@@ -35,7 +35,7 @@ export const MaterialContent = styled(MaterialContentContainer)`
 	& img {
 		text-align: center;
 		margin: 20px auto;
-		width: 950px;
+		width: 100%;
 		display: block;
 		border-radius: 8px;
 		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
