@@ -33,14 +33,22 @@ const MaterialContentContainer = ({
 
 export const MaterialContent = styled(MaterialContentContainer)`
 	& img {
-		margin: 15px -55px 10px;
+		text-align: center;
+		margin: 20px auto;
 		width: 950px;
 		display: block;
+		border-radius: 8px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+		border: 1px solid #ddd;
 	}
 
 	& .material-text {
 		font-size: 18px;
 		white-space: pre-line;
+		border: 1px solid #ddd;
+		background-color: #fff;
+		border-radius: 8px;
+		padding: 10px;
 	}
 
 	& H2 {

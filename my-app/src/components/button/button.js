@@ -17,7 +17,7 @@ export const Button = styled(ButtonContainer)`
 	height: 30px;
 	border: none;
 	border-radius: 5px;
-	background-color: rgb(159, 91, 172);
+	background-color: rgb(239, 207, 207);
 	transition: background-color 0.3s ease;
 
 	&:hover {

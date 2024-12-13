@@ -17,11 +17,11 @@ const AppColumn = styled.div`
 	width: 100%;
 	min-height: 100%;
 	margin: 0 auto;
-	background: #fff;
+	background: #eee;
 `;
 
 const Page = styled.div`
-	padding: 120px 0 20px;
+	padding: 90px 0 20px;
 	width: 100%;
 `;
 

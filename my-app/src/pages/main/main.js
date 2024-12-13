@@ -73,6 +73,8 @@ export const Main = styled(MainContainer)`
 	}
 
 	& .no-materials-found {
+		margin: 20px auto;
 		text-align: center;
+		font-size: 20px;
 	}
 `;

@@ -80,6 +80,8 @@ export const Comment = styled(CommentContainer)`
 		width: 550px;
 		padding: 5px 10px;
 		border: 1px solid #000;
+		border-radius: 8px;
+		background-color: #fff;
 	}
 
 	& .information-panel {
