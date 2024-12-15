@@ -16,7 +16,7 @@ const SmallText = styled.div`
 
 const LogoContainer = ({ className }) => (
 	<Link className={className} to="/">
-		<Icon id="fa-cubes" size="70px" margin="7px 10px 0 0" />
+		<Icon id="fa-cubes" size="70px" margin="0px 10px 0 0" />
 		<div>
 			<LargeText>Теория</LargeText>
 			<SmallText>по математике</SmallText>

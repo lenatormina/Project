@@ -57,24 +57,31 @@ export const App = () => {
 	}, [dispatch]);
 
 	return (
-		<AppColumn>
-			{isLoading && <Loader />}
-			<Header />
-			<Page>
-				{isLoading && <Loader />}
-				<Routes>
-					<Route path="/" element={<Main />} />
-					<Route path="/login" element={<Authorization />} />
-					<Route path="/register" element={<Registration />} />
-					<Route path="/users" element={<Users />} />
-					<Route path="/material" element={<Material />} />
-					<Route path="/material/:id" element={<Material />} />
-					<Route path="/material/:id/edit" element={<Material />} />
-					<Route path="*" element={<Error error={ERROR.PAGE_NOT_EXIST} />} />
-				</Routes>
-			</Page>
-			<Footer />
-			<Modal />
-		</AppColumn>
+		<>
+			{isLoading ? (
+				<Loader />
+			) : (
+				<AppColumn>
+					<Header />
+					<Page>
+						<Routes>
+							<Route path="/" element={<Main />} />
+							<Route path="/login" element={<Authorization />} />
+							<Route path="/register" element={<Registration />} />
+							<Route path="/users" element={<Users />} />
+							<Route path="/material" element={<Material />} />
+							<Route path="/material/:id" element={<Material />} />
+							<Route path="/material/:id/edit" element={<Material />} />
+							<Route
+								path="*"
+								element={<Error error={ERROR.PAGE_NOT_EXIST} />}
+							/>
+						</Routes>
+					</Page>
+					<Footer />
+					<Modal />
+				</AppColumn>
+			)}
+		</>
 	);
 };
