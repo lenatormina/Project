@@ -1,7 +1,7 @@
 import { transformComment } from '../transformers';
 
-const ALL_COMMENTS_URL = 'http://localhost:3001/comments';
-const MATERIAL_COMMENTS_URL = 'http://localhost:3001/comments?material_id=';
+const ALL_COMMENTS_URL = 'http://localhost:3005/comments';
+const MATERIAL_COMMENTS_URL = 'http://localhost:3005/comments?material_id=';
 
 export const getComments = (materialId) => {
 	const url =

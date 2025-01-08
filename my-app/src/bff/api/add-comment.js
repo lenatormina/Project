@@ -1,7 +1,7 @@
 import { generateDate } from '../utils';
 
 export const addComment = (userId, materialId, content) =>
-	fetch('http://localhost:3001/comments', {
+	fetch('http://localhost:3005/comments', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',

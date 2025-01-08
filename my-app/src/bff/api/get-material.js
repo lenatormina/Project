@@ -1,7 +1,7 @@
 import { transformMaterial } from '../transformers';
 
 export const getMaterial = async (materialId) =>
-	fetch(`http://localhost:3001/materials/${materialId}`)
+	fetch(`http://localhost:3005/materials/${materialId}`)
 		.then((res) => {
 			if (res.ok) {
 				return res;

@@ -1,5 +1,5 @@
 export const updateMaterial = ({ id, imageUrl, title, content }) =>
-	fetch(`http://localhost:3001/materials/${id}`, {
+	fetch(`http://localhost:3005/materials/${id}`, {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
