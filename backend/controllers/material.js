@@ -1,8 +1,10 @@
 const Material = require('../models/Material');
 
 // add
-function addMaterial(material) {
-	return Material.create(material);
+async function addMaterial(material) {
+	const newMaterial = await Material.create(material);
+	await newMaterial.populate({ path: 'comments', populate: 'author' });
+	return newMaterial;
 }
 // edit
 
@@ -10,6 +12,7 @@ async function editMaterial(id, material) {
 	const newMaterial = await Material.findByIdAndUpdate(id, material, {
 		returnDocument: 'after',
 	});
+	await newMaterial.populate({ path: 'comments', populate: 'author' });
 	return newMaterial;
 }
 
@@ -35,7 +38,7 @@ async function getMaterials(search = '', limit = 10, page = 1) {
 // get item
 
 function getMaterial(id) {
-	return Material.findById(id);
+	return Material.findById(id).populate({ path: 'comments', populate: 'author' });
 }
 
 module.exports = {
