@@ -23,7 +23,7 @@ const mapMaterial = require('./helpers/mapMaterial');
 const mapComment = require('./helpers/mapComment');
 const { deleteComment } = require('./controllers/comment');
 
-const port = 3004;
+const port = 3001;
 const app = express();
 
 app.use(cookieParser());
