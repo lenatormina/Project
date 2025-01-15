@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { MaterialContent, Comments, MaterialForm } from './components';
 import { useMatch, useParams } from 'react-router-dom';
-import { useServerRequest } from '../../hooks';
 import { loadMaterialAsync, RESET_MATERIAL_DATA } from '../../actions';
 import { selectMaterial } from '../../selectors';
 import { Error, PrivateContent } from '../../components';
@@ -16,7 +15,6 @@ const MaterialContainer = ({ className }) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const isEditing = !!useMatch('/material/:id/edit');
 	const isCreating = !!useMatch('/material');
-	const requestServer = useServerRequest();
 	const material = useSelector(selectMaterial);
 
 	useLayoutEffect(() => {
@@ -28,11 +26,11 @@ const MaterialContainer = ({ className }) => {
 			return;
 		}
 
-		dispatch(loadMaterialAsync(requestServer, params.id)).then((materialData) => {
+		dispatch(loadMaterialAsync(params.id)).then((materialData) => {
 			setError(materialData.error);
 			setIsLoading(false);
 		});
-	}, [dispatch, requestServer, params.id, isCreating]);
+	}, [dispatch, params.id, isCreating]);
 
 	if (isLoading) {
 		return null;

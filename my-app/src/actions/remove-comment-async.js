@@ -1,10 +1,10 @@
-import { setMaterialData } from './set-material-data';
+import { request } from '../utils/request';
+import { removeComment } from './remove-comment';
 
-export const removeCommentAsync =
-    (requestServer, materialId, id) => (dispatch) => {
-        requestServer('removeMaterialComment', materialId, id).then(
-            (materialData) => {
-                dispatch(setMaterialData(materialData.res));
-            },
-        );
-    };
+export const removeCommentAsync = (materialId, id) => (dispatch) => {
+	request(`/materials/${materialId}/comments/${id}`, 'DELETE', materialId, id).then(
+		(materialData) => {
+			dispatch(removeComment(materialData.res));
+		},
+	);
+};

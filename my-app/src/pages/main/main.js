@@ -1,9 +1,9 @@
 import { useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { MaterialCard, Pagination, Search } from './components';
-import { useServerRequest } from '../../hooks';
 import { PAGINATION_LIMIT } from '../../constants';
-import { getLastPageFromLinks, debounce } from './utils';
+import { debounce } from './utils';
+import { request } from '../../utils/request';
 
 const MainContainer = ({ className }) => {
 	const [materials, setMaterials] = useState([]);
@@ -11,17 +11,16 @@ const MainContainer = ({ className }) => {
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
-	const requestServer = useServerRequest();
 
 	useEffect(() => {
-		requestServer('fetchMaterials', searchPhrase, page, PAGINATION_LIMIT).then(
-			({ res: { materials, links } }) => {
-				setMaterials(materials);
-				setLastPage(getLastPageFromLinks(links));
-			},
-		);
+		request(
+			`/materials?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`,
+		).then(({ data: { materials, lastPage } }) => {
+			setMaterials(materials);
+			setLastPage(lastPage);
+		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [requestServer, page, shouldSearch]);
+	}, [page, shouldSearch]);
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
@@ -37,14 +36,14 @@ const MainContainer = ({ className }) => {
 				{materials.length > 0 ? (
 					<div className="material-list">
 						{materials.map(
-							({ id, title, imageUrl, publishedAt, commentsCount }) => (
+							({ id, title, imageUrl, publishedAt, comments }) => (
 								<MaterialCard
 									key={id}
 									id={id}
 									title={title}
 									imageUrl={imageUrl}
 									publishedAt={publishedAt}
-									commentsCount={commentsCount}
+									commentsCount={comments.length}
 								/>
 							),
 						)}

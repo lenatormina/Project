@@ -3,21 +3,18 @@ import styled from 'styled-components';
 import { Icon } from '../../../../components';
 import { Comment } from './components';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserId, selectUserRole } from '../../../../selectors';
-import { useServerRequest } from '../../../../hooks';
+import { selectUserRole } from '../../../../selectors';
 import { addCommentAsync } from '../../../../actions';
 import { PROP_TYPE, ROLE } from '../../../../constants';
 import PropTypes from 'prop-types';
 
 const CommentsContainer = ({ className, comments, materialId }) => {
 	const [newComment, setNewComment] = useState('');
-	const userId = useSelector(selectUserId);
 	const userRole = useSelector(selectUserRole);
 	const dispatch = useDispatch();
-	const requestServer = useServerRequest();
 
-	const onNewCommentAdd = (userId, materialId, content) => {
-		dispatch(addCommentAsync(requestServer, userId, materialId, content));
+	const onNewCommentAdd = (materialId, content) => {
+		dispatch(addCommentAsync(materialId, content));
 		setNewComment('');
 	};
 
@@ -37,7 +34,7 @@ const CommentsContainer = ({ className, comments, materialId }) => {
 						id="fa-paper-plane-o"
 						margin="0 0 0 10px"
 						size="18px"
-						onClick={() => onNewCommentAdd(userId, materialId, newComment)}
+						onClick={() => onNewCommentAdd(materialId, newComment)}
 					/>
 				</div>
 			)}

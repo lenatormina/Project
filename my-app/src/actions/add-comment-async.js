@@ -1,10 +1,8 @@
-import { setMaterialData } from './set-material-data';
+import { request } from '../utils/request';
+import { addComment } from './add-comment';
 
-export const addCommentAsync =
-	(requestServer, userId, materialId, content) => (dispatch) => {
-		requestServer('addMaterialComment', userId, materialId, content).then(
-			(materialData) => {
-				dispatch(setMaterialData(materialData.res));
-			},
-		);
-	};
+export const addCommentAsync = (materialId, content) => (dispatch) => {
+	request(`/materials/${materialId}/comments`, 'POST', { content }).then((comment) => {
+		dispatch(addComment(comment.data));
+	});
+};

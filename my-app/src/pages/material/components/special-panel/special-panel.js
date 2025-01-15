@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Icon } from '../../../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal, CLOSE_MODAL, removeMaterialAsync } from '../../../../actions';
-import { useServerRequest } from '../../../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { ROLE } from '../../../../constants';
 import { checkAccess } from '../../../../utils';
@@ -12,14 +11,13 @@ import PropTypes from 'prop-types';
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
 	const onMaterialRemove = (id) => {
 		dispatch(
 			openModal({
 				text: 'Удалить материал?',
 				onConfirm: () => {
-					dispatch(removeMaterialAsync(requestServer, id)).then(() => {
+					dispatch(removeMaterialAsync(id)).then(() => {
 						navigate('/');
 					});
 					dispatch(CLOSE_MODAL);

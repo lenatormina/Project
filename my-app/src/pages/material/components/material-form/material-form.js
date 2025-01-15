@@ -6,7 +6,6 @@ import { sanitizeContent } from './utils';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { saveMaterialAsync } from '../../../../actions';
-import { useServerRequest } from '../../../../hooks';
 import { PROP_TYPE } from '../../../../constants';
 
 const MaterialFormContainer = ({
@@ -24,14 +23,12 @@ const MaterialFormContainer = ({
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const requestServer = useServerRequest();
 
 	const onSave = () => {
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
 		dispatch(
-			saveMaterialAsync(requestServer, {
-				id,
+			saveMaterialAsync(id, {
 				imageUrl: imageUrlValue,
 				title: titleValue,
 				content: newContent,

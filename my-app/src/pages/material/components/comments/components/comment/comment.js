@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Icon } from '../../../../../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../actions';
-import { useServerRequest } from '../../../../../../hooks';
 import { selectUserRole } from '../../../../../../selectors';
 import { ROLE } from '../../../../../../constants';
 import PropTypes from 'prop-types';
@@ -16,14 +15,13 @@ const CommentContainer = ({
 	publishedAt,
 }) => {
 	const dispatch = useDispatch();
-	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
 	const onCommentRemove = (id) => {
 		dispatch(
 			openModal({
 				text: 'Удалить комментарий?',
 				onConfirm: () => {
-					dispatch(removeCommentAsync(requestServer, materialId, id));
+					dispatch(removeCommentAsync(materialId, id));
 					dispatch(CLOSE_MODAL);
 				},
 				onCancel: () => dispatch(CLOSE_MODAL),

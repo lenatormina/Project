@@ -7,6 +7,7 @@ const {
 	getRoles,
 	updateUser,
 	deleteUser,
+	getUsers,
 } = require('./controllers/user');
 const {
 	addMaterial,
@@ -21,10 +22,12 @@ const hasRole = require('./middlewares/hasRole');
 const ROLES = require('./constants/roles');
 const mapMaterial = require('./helpers/mapMaterial');
 const mapComment = require('./helpers/mapComment');
-const { deleteComment } = require('./controllers/comment');
+const { deleteComment, addComment } = require('./controllers/comment');
 
 const port = 3001;
 const app = express();
+
+app.use(express.static('../my-app/build'));
 
 app.use(cookieParser());
 app.use(express.json());

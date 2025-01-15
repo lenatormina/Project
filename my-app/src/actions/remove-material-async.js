@@ -1,3 +1,4 @@
-export const removeMaterialAsync =
-    (requestServer, id) => () => requestServer('removeMaterial', id)
-    
+import { request } from '../utils/request';
+
+export const removeMaterialAsync = (id) => () =>
+	request(`/materials/${id}`, 'DELETE', id);
