@@ -8,7 +8,7 @@ WORKDIR /usr/src/app/my-app
 RUN npm i
 RUN npm run build
 
-WORKDIR /usr/src/app/backend
+WORKDIR /usr/src/app/backendd
 RUN npm i
 
 EXPOSE  3001
