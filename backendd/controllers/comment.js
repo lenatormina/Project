@@ -1,8 +1,7 @@
-const Comment = require('../models/Comment');
-const Material = require('../models/Material');
+const Comment = require("../models/Comment");
+const Material = require("../models/Material");
 
 // add
-
 async function addComment(materialId, comment) {
 	const newComment = await Comment.create(comment);
 
@@ -10,7 +9,7 @@ async function addComment(materialId, comment) {
 		$push: { comments: newComment },
 	});
 
-	await newComment.populate('author');
+	await newComment.populate("author");
 
 	return newComment;
 }

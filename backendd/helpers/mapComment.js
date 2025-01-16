@@ -3,6 +3,6 @@ module.exports = function (comment) {
 		content: comment.content,
 		author: comment.author.login,
 		id: comment._id,
-		publishedAt: comment.createdAt,
+		publishedAt: comment.createdAt.toISOString().split("T")[0],
 	};
 };

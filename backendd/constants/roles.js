@@ -3,7 +3,7 @@ const MODERATOR = 1;
 const USER = 2;
 
 module.exports = {
-	ADMIN,
-	MODERATOR,
-	USER,
-};
+    ADMIN,
+    MODERATOR,
+    USER
+}
