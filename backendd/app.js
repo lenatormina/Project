@@ -23,8 +23,6 @@ const authenticated = require("./middlewares/authenticated");
 const hasRole = require("./middlewares/hasRole");
 const ROLES = require("./constants/roles");
 const mapMaterial = require("./helpers/mapMaterial");
-const { addComment, deleteComment } = require("./controllers/comment");
-const mapComment = require("./helpers/mapComment");
 
 const port = 3001;
 const app = express();
@@ -84,25 +82,6 @@ app.get("/materials/:id", async (req, res) => {
 });
 
 app.use(authenticated);
-
-app.post("/materials/:id/comments", async (req, res) => {
-	const newComment = await addComment(req.params.id, {
-		content: req.body.content,
-		author: req.user.id,
-	});
-
-	res.send({ data: mapComment(newComment) });
-});
-
-app.delete(
-	"/materials/:materialId/comments/:commentId",
-	hasRole([ROLES.ADMIN, ROLES.MODERATOR]),
-	async (req, res) => {
-		await deleteComment(req.params.materialId, req.params.commentId);
-
-		res.send({ error: null });
-	}
-);
 
 app.post("/materials", hasRole([ROLES.ADMIN]), async (req, res) => {
 	const newMaterial = await addMaterial({

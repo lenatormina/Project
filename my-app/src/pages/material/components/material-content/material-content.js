@@ -16,6 +16,7 @@ const MaterialContentContainer = ({
 	const navigate = useNavigate();
 	const userRole = useSelector(selectUserRole);
 	const isAdmin = userRole === ROLE.ADMIN;
+	const isGuest = userRole === ROLE.GUEST;
 
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [buttonText, setButtonText] = useState('Проверить ответ');
@@ -47,13 +48,16 @@ const MaterialContentContainer = ({
 			<H4>Задача:</H4>
 			<img src={taskUrl} alt={title} />
 			{isAdmin ? (
-				<div className="material-text">{answer}</div>
-			) : (
+				<>
+					<H4>Ответ:</H4>
+					<div className="material-text">{answer}</div>
+				</>
+			) : !isGuest ? (
 				<>
 					<Button onClick={handleCheckAnswer}>{buttonText}</Button>
 					{showAnswer && <div className="material-text">{answer}</div>}
 				</>
-			)}
+			) : null}
 		</div>
 	);
 };

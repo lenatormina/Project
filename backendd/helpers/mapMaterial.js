@@ -1,6 +1,3 @@
-const mongoose = require("mongoose");
-const mapComment = require("./mapComment");
-
 module.exports = function (material) {
 	return {
 		id: material.id,
@@ -9,11 +6,6 @@ module.exports = function (material) {
 		taskUrl: material.task,
 		answer: material.answer,
 		content: material.content,
-		comments: material.comments.map((comment) =>
-			mongoose.isObjectIdOrHexString(comment)
-				? comment
-				: mapComment(comment)
-		),
 		publishedAt: material.createdAt.toISOString().split("T")[0],
 	};
 };

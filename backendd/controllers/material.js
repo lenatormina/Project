@@ -5,10 +5,7 @@ const ROLES = require("../constants/roles");
 async function addMaterial(material) {
 	const newMaterial = await Material.create(material);
 
-	await newMaterial.populate({
-		path: "comments",
-		populate: "author",
-	});
+	await newMaterial.populate("author");
 
 	return newMaterial;
 }
@@ -19,10 +16,7 @@ async function editMaterial(id, material) {
 		returnDocument: "after",
 	});
 
-	await newMaterial.populate({
-		path: "comments",
-		populate: "author",
-	});
+	await newMaterial.populate("author");
 
 	return newMaterial;
 }
@@ -50,10 +44,7 @@ async function getMaterials(search = "", limit = 10, page = 1) {
 
 // get item
 function getMaterial(id) {
-	return Material.findById(id).populate({
-		path: "comments",
-		populate: "author",
-	});
+	return Material.findById(id).populate("author");
 }
 
 module.exports = {

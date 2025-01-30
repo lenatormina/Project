@@ -45,26 +45,28 @@ const UsersContainer = ({ className }) => {
 	return (
 		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
 			<div className={className}>
-				<H2>Пользователи</H2>
+				<H2>Ученики</H2>
 				<div>
 					<TableRow>
 						<div className="login-column">Логин</div>
 						<div className="registered-at-column">Дата регистрации</div>
 						<div className="role-column">Роль</div>
 					</TableRow>
-					{users.map(({ id, login, registeredAt, roleId }) => (
-						<UserRow
-							key={id}
-							id={id}
-							login={login}
-							registeredAt={registeredAt}
-							roleId={roleId}
-							roles={Object.values(roles).filter(
-								({ id: roleId }) => roleId !== ROLE.GUEST,
-							)}
-							onUserRemove={() => onUserRemove(id)}
-						/>
-					))}
+					{users
+						.filter(({ roleId }) => roleId !== ROLE.ADMIN)
+						.map(({ id, login, registeredAt, roleId }) => (
+							<UserRow
+								key={id}
+								id={id}
+								login={login}
+								registeredAt={registeredAt}
+								roleId={roleId}
+								roles={Object.values(roles).filter(
+									({ id: roleId }) => roleId !== ROLE.GUEST,
+								)}
+								onUserRemove={() => onUserRemove(id)}
+							/>
+						))}
 				</div>
 			</div>
 		</PrivateContent>

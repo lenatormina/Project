@@ -3,14 +3,7 @@ import { Icon } from '../../../../components';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const MaterialCardContainer = ({
-	className,
-	id,
-	title,
-	imageUrl,
-	publishedAt,
-	commentsCount,
-}) => {
+const MaterialCardContainer = ({ className, id, title, imageUrl, publishedAt }) => {
 	return (
 		<div className={className}>
 			<Link to={`/material/${id}`}>
@@ -25,16 +18,7 @@ const MaterialCardContainer = ({
 								margin="0 7px 0 0"
 								size="18px"
 							/>
-							<div className="published-and-comments">{publishedAt}</div>
-						</div>
-						<div className="comments-count">
-							<Icon
-								inactive={true}
-								id="fa-comment-o"
-								margin="0 7px 0 0"
-								size="18px"
-							/>
-							<div className="published-and-comments">{commentsCount}</div>
+							<div className="published">{publishedAt}</div>
 						</div>
 					</div>
 				</div>
@@ -86,11 +70,7 @@ export const MaterialCard = styled(MaterialCardContainer)`
 		font-size: 16px;
 	}
 
-	& .comments-count {
-		display: flex;
-	}
-
-	.published-and-comments {
+	.published {
 		display: flex;
 		align-items: center;
 	}
@@ -107,5 +87,4 @@ MaterialCard.propTypes = {
 	taskUrl: PropTypes.string.isRequired,
 	answer: PropTypes.string.isRequired,
 	publishedAt: PropTypes.string.isRequired,
-	commentsCount: PropTypes.number.isRequired,
 };

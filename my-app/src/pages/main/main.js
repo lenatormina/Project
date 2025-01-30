@@ -36,15 +36,7 @@ const MainContainer = ({ className }) => {
 				{materials.length > 0 ? (
 					<div className="material-list">
 						{materials.map(
-							({
-								id,
-								title,
-								imageUrl,
-								taskUrl,
-								answer,
-								publishedAt,
-								comments,
-							}) => (
+							({ id, title, imageUrl, taskUrl, answer, publishedAt }) => (
 								<MaterialCard
 									key={id}
 									id={id}
@@ -53,7 +45,6 @@ const MainContainer = ({ className }) => {
 									taskUrl={taskUrl}
 									answer={answer}
 									publishedAt={publishedAt}
-									commentsCount={comments.length}
 								/>
 							),
 						)}

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useEffect, useLayoutEffect, useState } from 'react';
-import { MaterialContent, Comments, MaterialForm } from './components';
+import { MaterialContent, MaterialForm } from './components';
 import { useMatch, useParams } from 'react-router-dom';
 import { loadMaterialAsync, RESET_MATERIAL_DATA } from '../../actions';
 import { selectMaterial } from '../../selectors';
@@ -46,7 +46,6 @@ const MaterialContainer = ({ className }) => {
 		) : (
 			<div className={className}>
 				<MaterialContent material={material} />
-				<Comments comments={material.comments} materialId={material.id} />
 			</div>
 		);
 

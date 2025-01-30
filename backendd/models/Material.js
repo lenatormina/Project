@@ -15,6 +15,7 @@ const MaterialSchema = mongoose.Schema(
 				message: "Image should be a valid url",
 			},
 		},
+		author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 		task: {
 			type: String,
 			required: true,
@@ -31,12 +32,6 @@ const MaterialSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		comments: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: "Comment",
-			},
-		],
 	},
 	{ timestamps: true }
 );
