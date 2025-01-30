@@ -6,6 +6,8 @@ module.exports = function (material) {
 		id: material.id,
 		title: material.title,
 		imageUrl: material.image,
+		taskUrl: material.task,
+		answer: material.answer,
 		content: material.content,
 		comments: material.comments.map((comment) =>
 			mongoose.isObjectIdOrHexString(comment)

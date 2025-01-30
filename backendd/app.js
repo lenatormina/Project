@@ -109,6 +109,8 @@ app.post("/materials", hasRole([ROLES.ADMIN]), async (req, res) => {
 		title: req.body.title,
 		content: req.body.content,
 		image: req.body.imageUrl,
+		task: req.body.taskUrl,
+		answer: req.body.answer,
 	});
 
 	res.send({ data: mapMaterial(newMaterial) });
@@ -119,6 +121,8 @@ app.patch("/materials/:id", hasRole([ROLES.ADMIN]), async (req, res) => {
 		title: req.body.title,
 		content: req.body.content,
 		image: req.body.imageUrl,
+		task: req.body.taskUrl,
+		answer: req.body.answer,
 	});
 
 	res.send({ data: mapMaterial(updatedMaterial) });

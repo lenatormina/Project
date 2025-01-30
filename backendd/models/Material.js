@@ -15,6 +15,18 @@ const MaterialSchema = mongoose.Schema(
 				message: "Image should be a valid url",
 			},
 		},
+		task: {
+			type: String,
+			required: true,
+			validate: {
+				validator: validator.isURL,
+				message: "Image should be a valid url",
+			},
+		},
+		answer: {
+			type: String,
+			required: true,
+		},
 		content: {
 			type: String,
 			required: true,

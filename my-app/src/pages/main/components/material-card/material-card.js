@@ -104,6 +104,8 @@ MaterialCard.propTypes = {
 	id: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	imageUrl: PropTypes.string.isRequired,
+	taskUrl: PropTypes.string.isRequired,
+	answer: PropTypes.string.isRequired,
 	publishedAt: PropTypes.string.isRequired,
 	commentsCount: PropTypes.number.isRequired,
 };

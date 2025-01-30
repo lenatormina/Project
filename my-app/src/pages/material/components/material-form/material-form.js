@@ -10,16 +10,20 @@ import { PROP_TYPE } from '../../../../constants';
 
 const MaterialFormContainer = ({
 	className,
-	material: { id, title, imageUrl, content, publishedAt },
+	material: { id, title, imageUrl, taskUrl, answer, content, publishedAt },
 }) => {
 	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+	const [taskUrlValue, setTaskUrlValue] = useState(taskUrl);
+	const [answerUrlValue, setAnswerUrlValue] = useState(answer);
 	const [titleValue, setTitleValue] = useState(title);
 	const contentRef = useRef(null);
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl);
+		setTaskUrlValue(taskUrl);
+		setAnswerUrlValue(answer);
 		setTitleValue(title);
-	}, [imageUrl, title]);
+	}, [imageUrl, taskUrl, answer, title]);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -30,6 +34,8 @@ const MaterialFormContainer = ({
 		dispatch(
 			saveMaterialAsync(id, {
 				imageUrl: imageUrlValue,
+				taskUrl: taskUrlValue,
+				answer: answerUrlValue,
 				title: titleValue,
 				content: newContent,
 			}),
@@ -37,6 +43,8 @@ const MaterialFormContainer = ({
 	};
 
 	const onImageChange = ({ target }) => setImageUrlValue(target.value);
+	const onTaskChange = ({ target }) => setTaskUrlValue(target.value);
+	const onAnswerChange = ({ target }) => setAnswerUrlValue(target.value);
 	const onTitleChange = ({ target }) => setTitleValue(target.value);
 	return (
 		<div className={className}>
@@ -59,13 +67,19 @@ const MaterialFormContainer = ({
 				}
 			/>
 			<div
+				className="material-text"
 				ref={contentRef}
 				contentEditable={true}
 				suppressContentEditableWarning={true}
-				className="material-text"
 			>
 				{content}
 			</div>
+			<Input value={taskUrlValue} placeholder="Задача..." onChange={onTaskChange} />
+			<Input
+				value={answerUrlValue}
+				placeholder="Ответ..."
+				onChange={onAnswerChange}
+			/>
 		</div>
 	);
 };
@@ -85,6 +99,7 @@ export const MaterialForm = styled(MaterialFormContainer)`
 		background-color: #fff;
 		border-radius: 8px;
 		padding: 10px;
+		margin: 0 0 10px;
 	}
 `;
 

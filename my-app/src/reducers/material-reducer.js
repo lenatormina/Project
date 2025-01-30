@@ -4,6 +4,8 @@ const initialMaterialState = {
 	id: '',
 	title: '',
 	imageUrl: '',
+	taskUrl: '',
+	answer: '',
 	content: '',
 	publishedAt: '',
 	commentsCount: [],

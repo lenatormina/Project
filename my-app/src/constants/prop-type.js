@@ -18,6 +18,8 @@ export const PROP_TYPE = {
 		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
 		imageUrl: PropTypes.string.isRequired,
+		taskUrl: PropTypes.string.isRequired,
+		answer: PropTypes.string.isRequired,
 		content: PropTypes.string.isRequired,
 		publishedAt: PropTypes.string.isRequired,
 	}),

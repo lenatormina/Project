@@ -1,14 +1,31 @@
 import styled from 'styled-components';
-import { H2, Icon } from '../../../../components';
+import { H2, H4, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 import { useNavigate } from 'react-router-dom';
 import { PROP_TYPE } from '../../../../constants';
+import { useSelector } from 'react-redux';
+import { selectUserRole } from '../../../../selectors';
+import { ROLE } from '../../../../constants';
+import { Button } from '../../../../components';
+import { useState } from 'react';
 
 const MaterialContentContainer = ({
 	className,
-	material: { id, title, imageUrl, content, publishedAt },
+	material: { id, title, imageUrl, taskUrl, answer, content, publishedAt },
 }) => {
 	const navigate = useNavigate();
+	const userRole = useSelector(selectUserRole);
+	const isAdmin = userRole === ROLE.ADMIN;
+
+	const [showAnswer, setShowAnswer] = useState(false);
+	const [buttonText, setButtonText] = useState('Проверить ответ');
+
+	const handleCheckAnswer = () => {
+		setShowAnswer((prev) => !prev);
+		setButtonText((prev) =>
+			prev === 'Проверить ответ' ? 'Скрыть ответ' : 'Проверить ответ',
+		);
+	};
 	return (
 		<div className={className}>
 			<H2>{title}</H2>
@@ -27,6 +44,16 @@ const MaterialContentContainer = ({
 			/>
 			<div className="material-text">{content}</div>
 			<img src={imageUrl} alt={title} />
+			<H4>Задача:</H4>
+			<img src={taskUrl} alt={title} />
+			{isAdmin ? (
+				<div className="material-text">{answer}</div>
+			) : (
+				<>
+					<Button onClick={handleCheckAnswer}>{buttonText}</Button>
+					{showAnswer && <div className="material-text">{answer}</div>}
+				</>
+			)}
 		</div>
 	);
 };
@@ -49,6 +76,7 @@ export const MaterialContent = styled(MaterialContentContainer)`
 		background-color: #fff;
 		border-radius: 8px;
 		padding: 10px;
+		margin: 20px 0;
 	}
 
 	& H2 {

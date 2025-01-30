@@ -4,6 +4,7 @@ export * from './footer/footer';
 export * from './input/input';
 export * from './button/button';
 export * from './h2/h2';
+export * from './h4/h4';
 export * from './authError/auth-form-error';
 export * from './private-content/private-content';
 export * from './modal/modal';
