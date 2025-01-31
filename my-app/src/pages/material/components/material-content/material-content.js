@@ -46,16 +46,16 @@ const MaterialContentContainer = ({
 			<div className="material-text">{content}</div>
 			<img src={imageUrl} alt={title} />
 			<H4>Задача:</H4>
-			<img src={taskUrl} alt={title} />
+			<img className="material-image" src={taskUrl} alt={title} />
 			{isAdmin ? (
 				<>
 					<H4>Ответ:</H4>
-					<div className="material-text">{answer}</div>
+					<div className="material-image">{answer}</div>
 				</>
 			) : !isGuest ? (
 				<>
 					<Button onClick={handleCheckAnswer}>{buttonText}</Button>
-					{showAnswer && <div className="material-text">{answer}</div>}
+					{showAnswer && <div className="material-image">{answer}</div>}
 				</>
 			) : null}
 		</div>
@@ -64,7 +64,6 @@ const MaterialContentContainer = ({
 
 export const MaterialContent = styled(MaterialContentContainer)`
 	& img {
-		text-align: center;
 		margin: 20px auto;
 		width: 100%;
 		display: block;
@@ -81,6 +80,18 @@ export const MaterialContent = styled(MaterialContentContainer)`
 		border-radius: 8px;
 		padding: 10px;
 		margin: 20px 0;
+	}
+
+	& .material-image {
+		max-width: 700px;
+		display: block;
+		margin: 20px auto;
+		font-size: 18px;
+		border: 1px solid #ddd;
+		background-color: #fff;
+		border-radius: 8px;
+		padding: 10px;
+		text-align: center;
 	}
 
 	& H2 {
