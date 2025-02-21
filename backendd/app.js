@@ -18,6 +18,11 @@ const {
 	editMaterial,
 	deleteMaterial,
 } = require("./controllers/material");
+const {
+	addBookmark,
+	removeBookmark,
+	getBookmarks,
+} = require("./controllers/bookmark");
 const mapUser = require("./helpers/mapUser");
 const authenticated = require("./middlewares/authenticated");
 const hasRole = require("./middlewares/hasRole");
@@ -69,7 +74,9 @@ app.get("/materials", async (req, res) => {
 	const { materials, lastPage } = await getMaterials(
 		req.query.search,
 		req.query.limit,
-		req.query.page
+		req.query.page,
+		req.query.sort,
+		req.query.topic
 	);
 
 	res.send({ data: { lastPage, materials: materials.map(mapMaterial) } });
@@ -90,6 +97,7 @@ app.post("/materials", hasRole([ROLES.ADMIN]), async (req, res) => {
 		image: req.body.imageUrl,
 		task: req.body.taskUrl,
 		answer: req.body.answer,
+		topic: req.body.topic,
 	});
 
 	res.send({ data: mapMaterial(newMaterial) });
@@ -137,6 +145,36 @@ app.delete("/users/:id", hasRole([ROLES.ADMIN]), async (req, res) => {
 	await deleteUser(req.params.id);
 
 	res.send({ error: null });
+});
+
+app.post("/bookmarks/:materialId", authenticated, async (req, res) => {
+	try {
+		const newBookmark = await addBookmark(
+			req.user.id,
+			req.params.materialId
+		);
+		res.send({ data: newBookmark });
+	} catch (e) {
+		res.send({ error: e.message || "Unknown error" });
+	}
+});
+
+app.delete("/bookmarks/:materialId", authenticated, async (req, res) => {
+	try {
+		await removeBookmark(req.user.id, req.params.materialId);
+		res.send({ error: null });
+	} catch (e) {
+		res.send({ error: e.message || "Unknown error" });
+	}
+});
+
+app.get("/bookmarks", authenticated, async (req, res) => {
+	try {
+		const bookmarks = await getBookmarks(req.user.id);
+		res.send({ data: bookmarks });
+	} catch (e) {
+		res.send({ error: e.message || "Unknown error" });
+	}
 });
 
 mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {

@@ -43,6 +43,7 @@ export const MaterialCard = styled(MaterialCardContainer)`
 		width: 100%;
 		height: 150px;
 		object-fit: cover;
+		display: block;
 	}
 
 	& .material-card-footer {

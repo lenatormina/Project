@@ -6,6 +6,7 @@ import { ROLE } from '../../../../constants';
 import { selectUserRole, selectUserLogin } from '../../../../selectors';
 import { logout } from '../../../../actions';
 import { checkAccess } from '../../../../utils';
+import { loadBookmarksAsync } from '../../../../actions/bookmark-actions';
 
 const RigthAlign = styled.div`
 	margin-top: -5px;
@@ -31,6 +32,13 @@ const ControlPanelContainer = ({ className }) => {
 	};
 
 	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+	const isAuthorized = roleId !== ROLE.GUEST;
+
+	const openBookmarks = () => {
+		dispatch(loadBookmarksAsync()).then(() => {
+			navigate('/bookmarks');
+		});
+	};
 
 	return (
 		<div className={className}>
@@ -49,6 +57,13 @@ const ControlPanelContainer = ({ className }) => {
 			</RigthAlign>
 			<RigthAlign>
 				<Icon id="fa-backward" margin="10px 0 0 0" onClick={() => navigate(-1)} />
+				{isAuthorized && (
+					<Icon
+						id="fa-bookmark"
+						margin="10px 0 0 15px"
+						onClick={openBookmarks}
+					/>
+				)}
 				{isAdmin && (
 					<>
 						<Link to="/material">

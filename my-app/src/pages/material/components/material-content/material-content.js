@@ -8,6 +8,13 @@ import { selectUserRole } from '../../../../selectors';
 import { ROLE } from '../../../../constants';
 import { Button } from '../../../../components';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {
+	addBookmarkAsync,
+	removeBookmarkAsync,
+	loadBookmarksAsync,
+} from '../../../../actions/bookmark-actions';
+import { useEffect } from 'react';
 
 const MaterialContentContainer = ({
 	className,
@@ -17,9 +24,23 @@ const MaterialContentContainer = ({
 	const userRole = useSelector(selectUserRole);
 	const isAdmin = userRole === ROLE.ADMIN;
 	const isGuest = userRole === ROLE.GUEST;
+	const dispatch = useDispatch();
+	const bookmarks = useSelector((state) => state.bookmark.bookmarks || []);
+	const isBookmarkedInitially = bookmarks.some(
+		(bookmark) => bookmark.material._id === id,
+	);
 
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [buttonText, setButtonText] = useState('Проверить ответ');
+	const [isBookmarked, setIsBookmarked] = useState(isBookmarkedInitially);
+
+	useEffect(() => {
+		setIsBookmarked(isBookmarkedInitially);
+	}, [isBookmarkedInitially]);
+
+	useEffect(() => {
+		dispatch(loadBookmarksAsync());
+	}, [dispatch]);
 
 	const handleCheckAnswer = () => {
 		setShowAnswer((prev) => !prev);
@@ -27,6 +48,19 @@ const MaterialContentContainer = ({
 			prev === 'Проверить ответ' ? 'Скрыть ответ' : 'Проверить ответ',
 		);
 	};
+
+	const toggleBookmark = () => {
+		if (isBookmarked) {
+			dispatch(removeBookmarkAsync(id)).then(() => {
+				setIsBookmarked(false);
+			});
+		} else {
+			dispatch(addBookmarkAsync(id)).then(() => {
+				setIsBookmarked(true);
+			});
+		}
+	};
+
 	return (
 		<div className={className}>
 			<H2>{title}</H2>
@@ -41,6 +75,17 @@ const MaterialContentContainer = ({
 						margin="0 10px 0 0 "
 						onClick={() => navigate(`/material/${id}/edit`)}
 					/>
+				}
+				bookmarkButton={
+					!isGuest && (
+						<Icon
+							id={isBookmarked ? 'fa-bookmark' : 'fa-bookmark-o'}
+							size="21px"
+							margin="0 10px 0 0 "
+							onClick={toggleBookmark}
+							color={isBookmarked ? 'black' : 'gray'}
+						/>
+					)
 				}
 			/>
 			<div className="material-text">{content}</div>

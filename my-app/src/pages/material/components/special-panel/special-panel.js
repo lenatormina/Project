@@ -8,7 +8,13 @@ import { checkAccess } from '../../../../utils';
 import { selectUserRole } from '../../../../selectors';
 import PropTypes from 'prop-types';
 
-const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
+const SpecialPanelContainer = ({
+	className,
+	id,
+	publishedAt,
+	editButton,
+	bookmarkButton,
+}) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const userRole = useSelector(selectUserRole);
@@ -42,19 +48,22 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 				)}
 				{publishedAt}
 			</div>
-			{isAdmin && (
-				<div className="buttons">
-					{editButton}
-					{publishedAt && (
-						<Icon
-							id="fa-trash-o"
-							size="21px"
-							margin="0 0 0 7px"
-							onClick={() => onMaterialRemove(id)}
-						/>
-					)}
-				</div>
-			)}
+			<div className="buttons">
+				{bookmarkButton}
+				{isAdmin && (
+					<>
+						{editButton}
+						{publishedAt && (
+							<Icon
+								id="fa-trash-o"
+								size="21px"
+								margin="0 0 0 7px"
+								onClick={() => onMaterialRemove(id)}
+							/>
+						)}
+					</>
+				)}
+			</div>
 		</div>
 	);
 };
@@ -83,4 +92,5 @@ SpecialPanel.propTypes = {
 	id: PropTypes.string.isRequired,
 	publishedAt: PropTypes.string.isRequired,
 	editButton: PropTypes.node.isRequired,
+	bookmarkButton: PropTypes.node.isRequired,
 };

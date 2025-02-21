@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './actions';
 import { showLoader, hideLoader } from './actions';
+import { Bookmarks } from './pages/bookmarks/bookmarks';
 
 import { ERROR } from './constants';
 
@@ -72,6 +73,7 @@ export const App = () => {
 							<Route path="/material" element={<Material />} />
 							<Route path="/material/:id" element={<Material />} />
 							<Route path="/material/:id/edit" element={<Material />} />
+							<Route path="/bookmarks" element={<Bookmarks />} />
 							<Route
 								path="*"
 								element={<Error error={ERROR.PAGE_NOT_EXIST} />}

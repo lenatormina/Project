@@ -3,3 +3,4 @@ export * from './registration/registration';
 export * from './users/users';
 export * from './material/material';
 export * from './main/main';
+export * from './bookmarks/bookmarks';

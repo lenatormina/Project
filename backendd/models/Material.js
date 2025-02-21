@@ -32,6 +32,11 @@ const MaterialSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		topic: {
+			type: String,
+			required: true,
+			enum: ["Алгебра", "Геометрия"],
+		},
 	},
 	{ timestamps: true }
 );

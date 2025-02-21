@@ -10,17 +10,19 @@ const MainContainer = ({ className }) => {
 	const [page, setPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
+	const [sortOption, setSortOption] = useState('newest');
 	const [shouldSearch, setShouldSearch] = useState(false);
+	const [topic, setTopic] = useState('');
 
 	useEffect(() => {
 		request(
-			`/materials?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}`,
+			`/materials?search=${searchPhrase}&page=${page}&limit=${PAGINATION_LIMIT}&sort=${sortOption}&topic=${topic}`,
 		).then(({ data: { materials, lastPage } }) => {
 			setMaterials(materials);
 			setLastPage(lastPage);
 		});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [page, shouldSearch]);
+	}, [page, shouldSearch, sortOption, topic]);
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
@@ -29,10 +31,27 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch);
 	};
 
+	const onTopicChange = ({ target }) => {
+		setTopic(target.value);
+		setShouldSearch(!shouldSearch);
+	};
+
+	const onSortChange = ({ target }) => {
+		setSortOption(target.value);
+		setShouldSearch(!shouldSearch);
+	};
+
 	return (
 		<div className={className}>
 			<div className="materials-and-search">
-				<Search searchPhrase={searchPhrase} onChange={onSearch} />
+				<Search
+					searchPhrase={searchPhrase}
+					onChange={onSearch}
+					sortOption={sortOption}
+					onSortChange={onSortChange}
+					topic={topic}
+					onTopicChange={onTopicChange}
+				/>
 				{materials.length > 0 ? (
 					<div className="material-list">
 						{materials.map(

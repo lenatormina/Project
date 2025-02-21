@@ -9,3 +9,4 @@ export * from './save-material-async';
 export * from './remove-material-async';
 export * from './reset-material-data';
 export * from './loader';
+export * from './bookmark-actions';

@@ -6,6 +6,6 @@ module.exports = function (material) {
 		taskUrl: material.task,
 		answer: material.answer,
 		content: material.content,
-		publishedAt: material.createdAt.toISOString().split("T")[0],
+		publishedAt: material.createdAt.toLocaleDateString(),
 	};
 };

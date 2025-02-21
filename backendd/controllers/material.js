@@ -1,5 +1,4 @@
 const Material = require("../models/Material");
-const ROLES = require("../constants/roles");
 
 // add
 async function addMaterial(material) {
@@ -27,13 +26,30 @@ function deleteMaterial(id) {
 }
 
 // get list with search and pagination
-async function getMaterials(search = "", limit = 10, page = 1) {
+async function getMaterials(
+	search = "",
+	limit = 10,
+	page = 1,
+	sort = "createdAt",
+	topic = ""
+) {
+	const sortOptions = {
+		alphabetical: { title: 1 },
+		newest: { createdAt: -1 },
+		oldest: { createdAt: 1 },
+	};
+
+	const query = {
+		title: { $regex: search, $options: "i" },
+		...(topic && { topic }),
+	};
+
 	const [materials, count] = await Promise.all([
-		Material.find({ title: { $regex: search, $options: "i" } })
+		Material.find(query)
 			.limit(limit)
 			.skip((page - 1) * limit)
-			.sort({ createdAt: -1 }),
-		Material.countDocuments({ title: { $regex: search, $options: "i" } }),
+			.sort(sortOptions[sort] || sortOptions["newest"]),
+		Material.countDocuments(query),
 	]);
 
 	return {
