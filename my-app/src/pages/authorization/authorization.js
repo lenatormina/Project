@@ -1,16 +1,16 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { server } from '../../bff';
 import { Input, Button, H2, AuthFormError } from '../../components';
 import { Link, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
-import { setUser } from '../../action';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserRole } from '../../selectors';
-import { ROLE } from '../../constans';
+import { ROLE } from '../../constants';
 import { useResetForm } from '../../hooks';
+import { setUser } from '../../actions';
+import { request } from '../../utils/request';
 
 const authFormSchema = yup.object().shape({
 	login: yup
@@ -60,12 +60,13 @@ const AuthorizationContainer = ({ className }) => {
 	useResetForm(reset);
 
 	const onSubmit = ({ login, password }) => {
-		server.authorize(login, password).then(({ error, res }) => {
+		request('/login', 'POST', { login, password }).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
 				return;
 			}
-			dispatch(setUser(res));
+			dispatch(setUser(user));
+			sessionStorage.setItem('userData', JSON.stringify(user));
 		});
 	};
 
@@ -104,6 +105,7 @@ export const Authorization = styled(AuthorizationContainer)`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
 	& > form {
 		display: flex;
 		flex-direction: column;

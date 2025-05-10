@@ -1,54 +1,75 @@
 import styled from 'styled-components';
 import { H2 } from '../../components';
 import { UserRow, TableRow } from './components';
-import { useServerRequest } from '../../hooks';
 import { useState, useEffect } from 'react';
-import { Content } from '../../components';
+import { PrivateContent } from '../../components';
+import { ROLE } from '../../constants';
+import { checkAccess } from '../../utils';
+import { selectUserRole } from '../../selectors';
+import { useSelector } from 'react-redux';
+import { request } from '../../utils/request';
 
 const UsersContainer = ({ className }) => {
 	const [users, setUsers] = useState([]);
 	const [roles, setRoles] = useState([]);
 	const [errorMessage, setErrorMessage] = useState(null);
-
-	const requestServer = useServerRequest();
+	const [shouldUpdateUserList, setShouldUpdateUserList] = useState(false);
+	const userRole = useSelector(selectUserRole);
 
 	useEffect(() => {
-		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+
+		Promise.all([request('/users'), request('/users/roles')]).then(
 			([usersRes, rolesRes]) => {
 				if (usersRes.error || rolesRes.error) {
 					setErrorMessage(usersRes.error || rolesRes.error);
-					console.log(usersRes.error);
 					return;
 				}
-				console.log(usersRes);
-				setUsers(usersRes.res);
-				setRoles(rolesRes.res);
+				setUsers(usersRes.data);
+				setRoles(rolesRes.data);
 			},
 		);
-	}, [requestServer]);
+	}, [shouldUpdateUserList, userRole]);
+
+	const onUserRemove = (userId) => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			return;
+		}
+		request(`/users/${userId}`, 'DELETE').then(() => {
+			setShouldUpdateUserList(!shouldUpdateUserList);
+		});
+	};
 
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
-				<H2>Пользователи</H2>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
+				<H2>Ученики</H2>
 				<div>
 					<TableRow>
 						<div className="login-column">Логин</div>
 						<div className="registered-at-column">Дата регистрации</div>
 						<div className="role-column">Роль</div>
 					</TableRow>
-					{users.map(({ id, login, registeredAt, roleId }) => (
-						<UserRow
-							key={id}
-							login={login}
-							registeredAt={registeredAt}
-							roleId={roleId}
-							roles={roles}
-						/>
-					))}
+					{users
+						.filter(({ roleId }) => roleId !== ROLE.ADMIN)
+						.map(({ id, login, registeredAt, roleId }) => (
+							<UserRow
+								key={id}
+								id={id}
+								login={login}
+								registeredAt={registeredAt}
+								roleId={roleId}
+								roles={Object.values(roles).filter(
+									({ id: roleId }) => roleId !== ROLE.GUEST,
+								)}
+								onUserRemove={() => onUserRemove(id)}
+							/>
+						))}
 				</div>
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	);
 };
 export const Users = styled(UsersContainer)`

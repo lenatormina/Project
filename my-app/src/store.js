@@ -6,6 +6,8 @@ import {
 	usersReducer,
 	materialReducer,
 	materialsReducer,
+	loaderReducer,
+	bookmarkReducer,
 } from './reducers';
 
 const reducer = combineReducers({
@@ -14,6 +16,8 @@ const reducer = combineReducers({
 	users: usersReducer,
 	material: materialReducer,
 	materials: materialsReducer,
+	loader: loaderReducer,
+	bookmark: bookmarkReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

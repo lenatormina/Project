@@ -2,13 +2,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Button, Icon } from '../../../../components';
-import { ROLE } from '../../../../constans';
-import {
-	selectUserRole,
-	selectUserLogin,
-	selectUserSession,
-} from '../../../../selectors';
-import { logout } from '../../../../action';
+import { ROLE } from '../../../../constants';
+import { selectUserRole, selectUserLogin } from '../../../../selectors';
+import { logout } from '../../../../actions';
+import { checkAccess } from '../../../../utils';
+import { loadBookmarksAsync } from '../../../../actions/bookmark-actions';
 
 const RigthAlign = styled.div`
 	margin-top: -5px;
@@ -27,7 +25,20 @@ const ControlPanelContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const roleId = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
-	const session = useSelector(selectUserSession);
+
+	const onLogout = () => {
+		dispatch(logout());
+		sessionStorage.removeItem('userData');
+	};
+
+	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+	const isAuthorized = roleId !== ROLE.GUEST;
+
+	const openBookmarks = () => {
+		dispatch(loadBookmarksAsync()).then(() => {
+			navigate('/bookmarks');
+		});
+	};
 
 	return (
 		<div className={className}>
@@ -40,23 +51,29 @@ const ControlPanelContainer = ({ className }) => {
 					<>
 						<UserName>{login}</UserName>
 
-						<Icon
-							id="fa-sign-out"
-							margin="0 0 0 15px"
-							onClick={() => dispatch(logout(session))}
-						/>
+						<Icon id="fa-sign-out" margin="0 0 0 15px" onClick={onLogout} />
 					</>
 				)}
 			</RigthAlign>
 			<RigthAlign>
-				<Icon id="fa-backward" margin="5px 0 0 0" onClick={() => navigate(-1)} />
-
-				<Link to="/material">
-					<Icon id="fa-file-text-o" margin="5px 0 0 15px" />
-				</Link>
-				<Link to="/users">
-					<Icon id="fa-users" margin="5px 0 0 15px" />
-				</Link>
+				<Icon id="fa-backward" margin="10px 0 0 0" onClick={() => navigate(-1)} />
+				{isAuthorized && (
+					<Icon
+						id="fa-bookmark"
+						margin="10px 0 0 15px"
+						onClick={openBookmarks}
+					/>
+				)}
+				{isAdmin && (
+					<>
+						<Link to="/material">
+							<Icon id="fa-file-text-o" margin="10px 0 0 15px" />
+						</Link>
+						<Link to="/users">
+							<Icon id="fa-users" margin="10px 0 0 13px" />
+						</Link>
+					</>
+				)}
 			</RigthAlign>
 		</div>
 	);
